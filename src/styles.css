@@ -61,8 +61,34 @@
   * @import "utilities/skew-transforms";
   */
 
+body, .smooth-container { scroll-behavior: smooth }
+
 button,
 button:active
 button:focus {
   outline: none !important;
 }
+
+#scroll-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  scroll-snap-type: y mandatory;
+  scroll-snap-destination: 50% 50%;
+  scroll-snap-stop: always;
+}
+
+.section {
+  transition: scroll-snap-align 800ms ease;
+  scroll-snap-align: center;
+  scroll-snap-coordinate: 50% 50%;
+}
+
+.siema-slide,
+.section {
+  width: 100%;
+  height: 100vh;
+  min-height: 50vw;
+  max-height: 100vw;
+}
+

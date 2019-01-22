@@ -35,6 +35,9 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "siema": "^1.5.1"
+    "fullpage.js": "^3.0.4",
+    "scrollmagic": "^2.0.6",
+    "siema": "^1.5.1",
+    "zenscroll": "^4.0.2"
   }
 }

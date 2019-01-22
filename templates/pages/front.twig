@@ -1,6 +1,7 @@
 {% extends 'base.twig' %}
+
 {% block header %}
-    <header class="bg-purple-light w-full h-screen flex flex-wrap">
+    <header class="section bg-purple-light pt-12 flex flex-wrap">
         <div class="w-full flex flex-wrap">
             <div class="w-1/2 px-8 text-red">ask</div>
             <div class="w-1/2 px-8 text-white flex flex-col justify-center">
@@ -16,16 +17,17 @@
         </div>
         <div class="w-full px-8 text-white">stehven</div>
     </header>
+    {# <button id="zen">Zen Test</button> #}
 {% endblock %}
 {% block content %}
-    <section class="w-full h-screen flex flex-wrap">
+    <section class="section flex flex-wrap">
         <div class="px-8 bg-green w-1/2"></div>
         <div class="bg-white w-1/2">
             <div class="siema-wrapper relative">
                 <div class="siema-slider">
-                    <div class="w-full h-screen bg-grey-dark"></div>
-                    <div class="w-full h-screen bg-grey"></div>
-                    <div class="w-full h-screen bg-grey-light"></div>
+                    <div class="siema-slide bg-grey-dark"></div>
+                    <div class="siema-slide bg-grey"></div>
+                    <div class="siema-slide bg-grey-light"></div>
                 </div>
                 <div class="siema-controls absolute pin-r pin-b flex">
                     <button class="btn btn-prev w-12 h-12 bg-white"></button>
@@ -35,18 +37,18 @@
         </div>
     </section>
 
-    <section class="w-full h-screen flex flex-wrap">
+    <section class="section flex flex-wrap">
         <div class="px-8 bg-red w-1/2">1</div>
         <div class="px-8 py-8 bg-purple w-1/2"></div>
     </section>
     
-    <section class="w-full h-screen flex flex-wrap">
+    <section class="section flex flex-wrap">
         <div class="bg-white w-1/2">
             <div class="siema-wrapper relative">
                 <div class="siema-slider">
-                    <div class="w-full h-screen bg-grey-dark"></div>
-                    <div class="w-full h-screen bg-grey"></div>
-                    <div class="w-full h-screen bg-grey-light"></div>
+                    <div class="siema-slide bg-grey-dark"></div>
+                    <div class="siema-slide bg-grey"></div>
+                    <div class="siema-slide bg-grey-light"></div>
                 </div>
                 <div class="siema-controls absolute pin-r pin-b flex">
                     <button class="btn btn-prev w-12 h-12 bg-white"></button>
@@ -59,7 +61,7 @@
 {% endblock %}
 
 {% block footer %}
-    <footer class="bg-purple-light w-full h-screen flex flex-wrap flex-col justify-between">
+    <footer id="footer" class="section bg-purple-light flex flex-wrap flex-col justify-between">
         <div class="w-full px-8 bg-white" style="height: 30vh">ask stehven</div>
         <div class="w-full flex flex-wrap"  style="height: 60vh">
             <div class="w-1/2 px-8 py-8 text-red">
