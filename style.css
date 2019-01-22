@@ -5,4 +5,5 @@ Author: Mark Brand
 Description: A Timber wordpress theme boilerplate using tailwindcss.
 */
 
-@import './dist/bundle.css'
+@import './assets/fonts/fonts.css';
+@import './dist/bundle.css';

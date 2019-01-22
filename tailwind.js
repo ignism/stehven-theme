@@ -194,6 +194,7 @@ module.exports = {
 
   fonts: {
     'sans': [
+      'PostGrotesk',
       'system-ui',
       'BlinkMacSystemFont',
       '-apple-system',

@@ -3,17 +3,7 @@ import ScrollMagic from 'scrollmagic'
 
 const controller = new ScrollMagic.Controller();
 
-let zen = document.getElementById('zen')
-
-if (zen) {
-  zen.onclick = (event) => {
-    console.log('click')
-    let footer = document.getElementById('footer')
-    zenscroll.to(footer)
-  }
-}
-
-// let sections = Array.from(document.getElementsByClassName('section'))
+//  Full page snap, homebrew JS
 let sections = Array.from(document.querySelectorAll('.section'))
 
 sections.forEach((section) => {

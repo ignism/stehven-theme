@@ -69,6 +69,12 @@ button:focus {
   outline: none !important;
 }
 
+h1, h2 {
+  font-family: 'Druk', sans-serif;
+}
+
+/* ---- RESPONSIVE FULL PAGE ---- */
+
 #scroll-container {
   width: 100vw;
   height: 100vh;
@@ -92,3 +98,9 @@ button:focus {
   max-height: 100vw;
 }
 
+/* ---- */
+
+#menu {
+  top: 0;
+  transition: top 200ms ease;
+}
