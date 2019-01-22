@@ -29,3 +29,27 @@ siemaWrappers.forEach((wrapper) => {
     siema.next()
   }
 })
+
+let siemaTriangles = Array.from(document.getElementsByClassName('siema-triangle'))
+
+siemaTriangles.forEach((triangle) => {
+  const slider = triangle.querySelector('.siema-slider')
+  
+  const siema = new Siema({
+    selector: slider,
+    duration: 400,
+    easing: 'ease-out',
+    perPage: 1,
+    startIndex: 0,
+    draggable: false,
+    multipleDrag: true,
+    threshold: 20,
+    loop: true,
+    rtl: false,
+    onInit: () => {},
+    onChange: () => {},
+  });
+
+  setInterval(() => siema.prev(), 2000)
+})
+

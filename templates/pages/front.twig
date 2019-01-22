@@ -38,7 +38,26 @@
     </section>
 
     <section class="section flex flex-wrap">
-        <div class="px-8 bg-red w-1/2">1</div>
+        <div class="siema-triangle w-1/2 flex flex-col flex-wrap">
+            <div class="siema-slider">
+                <div class="siema-slide bg-red">
+                    <div class="w-full h-1/2 text-purple">
+                        {% include "partials/triangle-top-svg.twig" %}
+                    </div>
+                    <div class="w-full h-1/2 text-purple">
+                        {% include "partials/triangle-bottom-svg.twig" %}
+                    </div>
+                </div>
+                    <div class="siema-slide bg-purple">
+                    <div class="w-full h-1/2 text-red">
+                        {% include "partials/triangle-top-svg.twig" %}
+                    </div>
+                    <div class="w-full h-1/2 text-red">
+                        {% include "partials/triangle-bottom-svg.twig" %}
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="px-8 py-8 bg-purple w-1/2"></div>
     </section>
     
