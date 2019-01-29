@@ -9,7 +9,7 @@ import _ from 'lodash'
   let prevOffset = 0
   let startOffset = 0
   let endOffset = 0
-  let threshold = window.innerHeight / 2
+  let threshold = 96 // window.innerHeight / 8
   let tickerDown = 0
   let tickerUp = 0
 
@@ -31,7 +31,6 @@ import _ from 'lodash'
   }
 
   window.addEventListener('resize', _.debounce(() => {
-    threshold = window.innerHeight / 2
     menu.style.width = menuWrapper.clientWidth + 'px'
   }, 100))
 
@@ -50,14 +49,19 @@ import _ from 'lodash'
       }
       tickerDown = 0
       tickerUp++
+      // console.log(tickerUp)
     }
     
-    if (tickerDown > 0) {
-      hideMenu()
-    } else if (tickerUp > 0) {
+    if (tickerDown > 10) {
+      // hideMenu()
       if (Math.abs(startOffset - currOffset) > threshold) {
-        // Lets not show
-        // showMenu()
+        hideMenu()
+      }
+    } else if (tickerUp > 0) {
+      // showMenu()
+      // console.log(threshold + ':' + Math.abs(startOffset - currOffset))
+      if (Math.abs(startOffset - currOffset) > threshold) {
+        showMenu()
       }
     }
     

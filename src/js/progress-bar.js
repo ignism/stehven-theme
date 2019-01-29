@@ -29,6 +29,6 @@ import _ from 'lodash'
 
     activeSection.classList.add('active')
     progress.style.top = progress.clientHeight * index + 'px'
-  }, 400))
+  }, 10))
 
 })()

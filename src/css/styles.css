@@ -9,7 +9,8 @@
  *
  * @import "tailwindcss/preflight";
  */
-@tailwind preflight;
+/* @tailwind preflight; */
+@import "tailwindcss/preflight";
 
 /**
   * This injects any component classes registered by plugins.
@@ -61,6 +62,12 @@
   * @import "utilities/skew-transforms";
   */
 
+$green: #14B978;
+$blue: #46D5FF;
+$purple: #9854FC;
+$red: #FD4635;
+
+
 body, .smooth-container { 
   scroll-behavior: smooth;
   overflow: auto;
@@ -73,17 +80,29 @@ button:focus {
   outline: none !important;
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: 'Druk', sans-serif;
   font-weight: 400;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 18rem;
+  line-height: 0.85;
+  margin-top: 0.25rem;
 }
 
 h2 {
   font-size: 9rem;
   line-height: 0.85;
   margin-top: 0.25rem;
-  text-transform: uppercase;
   margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: 7rem;
+  line-height: 0.85;
+  margin-top: 0.25rem;
 }
 
 .font-druk {
@@ -91,7 +110,7 @@ h2 {
 }
 
 .section {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .siema-slide,
@@ -101,6 +120,17 @@ h2 {
   max-height: 100vw;
 }
 
+.h-1\/2 .siema-slide {
+  height: 50vh;
+  min-height: 25vw;
+  max-height: 50vw;
+}
+
+.h-1\/4 .siema-slide {
+  height: 25vh;
+  min-height: 12.5vw;
+  max-height: 25vw;
+}
 /* ---- */
 
 #menu {
@@ -184,4 +214,26 @@ h2 {
   border-left: 100% solid green;
 }
 
-/* ---- */
+/* ---- ASK */
+
+.ask-option.active {
+  color: white;
+  background: $purple;
+}
+
+.step-option:nth-child(1),
+.step-option:nth-child(3) {
+  background: $blue;
+  color: white;
+}
+
+.step-option:nth-child(2),
+.step-option:nth-child(4) {
+  background: $red;
+  color: white;
+}
+
+.step-option.active {
+  background: white;
+  color: $red;
+}

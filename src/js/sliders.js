@@ -11,6 +11,8 @@ import Siema from "siema"
     const btnNext = wrapper.querySelector(".siema-controls .btn-next")
     const perPage = parseInt(wrapper.getAttribute('data-per-page'))
     const loop = parseInt(wrapper.getAttribute('data-loop'))
+    const draggable = parseInt(wrapper.getAttribute('data-draggable'))
+    const navigationClass = wrapper.getAttribute('data-navigation-class')
     
     const siema = new Siema({
       selector: slider,
@@ -18,7 +20,7 @@ import Siema from "siema"
       easing: "ease-out",
       perPage: perPage,
       startIndex: 0,
-      draggable: true,
+      draggable: draggable,
       multipleDrag: true,
       threshold: 20,
       loop: loop,
@@ -27,11 +29,40 @@ import Siema from "siema"
       onChange: () => {}
     })
 
-    btnPrev.onclick = event => {
-      siema.prev()
+    if (btnNext && btnPrev) {
+      btnPrev.onclick = event => {
+        siema.prev()
+      }
+      btnNext.onclick = event => {
+        siema.next()
+      }
     }
-    btnNext.onclick = event => {
-      siema.next()
+
+    if (navigationClass) {
+      let navigationItems = Array.from(document.getElementsByClassName(navigationClass))
+
+      for (let i = 0; i < navigationItems.length; i++) {
+        let item = navigationItems[i]
+
+        item.addEventListener('mouseover', (event) => {
+          disableOptions()
+          item.classList.add('active')
+          siema.goTo(i)
+        })
+
+        item.addEventListener('touchstart', (event) => {
+          disableOptions()
+          item.classList.add('active')
+          siema.goTo(i)
+        })
+      }
+
+      function disableOptions() {
+        navigationItems.forEach((item) => {
+          item.classList.remove('active')
+        })
+      }
+
     }
   })
 

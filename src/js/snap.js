@@ -38,8 +38,6 @@ function scrollOut(event) {
     let centerOffset = (window.innerHeight - getSectionHeight()) / 2
     let targetTop = event.target.triggerElement().offsetTop - centerOffset
 
-    console.log(centerOffset)
-
     tween({
       from: currentTop,
       to: targetTop,
@@ -60,8 +58,6 @@ function scrollIn(event) {
     let currentTop = window.scrollY
     let centerOffset = (window.innerHeight - getSectionHeight()) / 2
     let targetTop = event.target.triggerElement().offsetTop - centerOffset
-
-    console.log(centerOffset)
 
     tween({
       from: currentTop,

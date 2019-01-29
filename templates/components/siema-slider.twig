@@ -1,4 +1,5 @@
-<div class="siema-wrapper w-full relative" data-per-page="{{ options.perPage }}" data-loop="{{ options.loop }}">
+<div class="siema-wrapper w-full relative" data-per-page="{{ options.perPage }}" data-loop="{{ options.loop }}"
+    data-draggable="{{ options.draggable }}" data-navigation-class="{{ options.navigationClass }}">
     <div class="siema-slider">
         {% if slides %}
         {% for slide in slides %}
@@ -20,5 +21,7 @@
         </div>
         {% endif %}
     </div>
+    {% if options.controls %}
     {% include "components/siema-controls.twig" %}
+    {% endif %}
 </div>
