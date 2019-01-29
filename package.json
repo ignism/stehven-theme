@@ -1,5 +1,5 @@
 {
-  "name": "stehven-theme",
+  "name": "timber-tailwind-boilerplate",
   "version": "0.1.0",
   "description": "A Timber wordpress theme boilerplate using tailwindcss.",
   "main": "index.js",
@@ -35,9 +35,9 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "fullpage.js": "^3.0.4",
+    "lodash": "^4.17.11",
+    "popmotion": "^8.6.1",
     "scrollmagic": "^2.0.6",
-    "siema": "^1.5.1",
-    "zenscroll": "^4.0.2"
+    "siema": "^1.5.1"
   }
 }

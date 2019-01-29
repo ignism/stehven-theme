@@ -1,0 +1,16 @@
+<svg width="191px" height="191px" viewBox="0 0 191 191" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="HOMEPAGE" transform="translate(-1191.000000, -2472.000000)">
+            <g id="Component_3" transform="translate(0.000000, 1797.668925)">
+                <g id="right" transform="translate(720.000000, 0.000000)">
+                    <g id="button" transform="translate(471.000000, 675.000000)">
+                        <ellipse id="circle" fill="#000000" fill-rule="nonzero" cx="95.601038" cy="95.1635175" rx="95" ry="94.8945616"></ellipse>
+                        <text id="HERE" font-family="Druk-Medium, Druk" font-size="110.790766" font-weight="400" fill="#FFFFFF">
+                            <tspan x="25.5812736" y="137.483154">HERE</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

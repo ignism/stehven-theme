@@ -1,27 +1,28 @@
 {% block html_head_container %}
-    {% include 'header.twig' %}
-    {% block head %}{% endblock %}
+{% include 'header.twig' %}
+{% block head %}{% endblock %}
 </head>
 {% endblock %}
 
-<body class="{{body_class}} font-sans" data-template="base.twig">
-<div id="scroll-container">
+<body class="{{body_class}} font-sans text-white text-xl" data-template="base.twig">
 
-{% include "partials/menu.twig" with {'menu': menu.get_items} %}
+        {% include "components/progress-bar.twig" %}
 
-{% block header %}
-{% endblock %}
+        {% include "components/menu.twig" with {'menu': menu.get_items} %}
 
-{% block content %}
-    Sorry, no content
-{% endblock %}
+        {% block header %}
+        {% endblock %}
 
-{% block footer %}
-{% endblock %}
+        {% block content %}
+        Sorry, no content
+        {% endblock %}
 
-{% include 'footer.twig' %}
-{{ function('wp_footer') }}
+        {% block footer %}
+        {% endblock %}
 
-</div>
+        {% include 'footer.twig' %}
+        {{ function('wp_footer') }}
+
 </body>
+
 </html>

@@ -1,20 +1,75 @@
-import ScrollSnap from 'scroll-snap'
+import {
+  tween,
+  styler,
+  easing
+} from 'popmotion'
+import ScrollMagic from 'scrollmagic'
 
-const snapConfig = {
-  scrollSnapDestination: '90% 0%', // *REQUIRED* scroll-snap-destination css property, as defined here: https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-destination
-  scrollTimeout: 100, // *OPTIONAL* (default = 100) time in ms after which scrolling is considered finished
-  scrollTime: 300 // *OPTIONAL* (default = 300) time in ms for the smooth snap
+const controller = new ScrollMagic.Controller();
+
+//  Full page snap, homebrew JS
+let sections = Array.from(document.querySelectorAll('.section'))
+const viewportStyler = styler(window);
+
+sections.forEach((section) => {
+  let sceneIn = new ScrollMagic.Scene({
+    triggerElement: section,
+    triggerHook: 0.8,
+  }).on("start end", scrollIn).addTo(controller)
+
+  let sceneOut = new ScrollMagic.Scene({
+    triggerElement: section,
+    triggerHook: 0.2,
+    offset: getSectionHeight(),
+  }).on("start end", scrollOut).addTo(controller)
+})
+
+function getSectionHeight() {
+  return sections[0].clientHeight
 }
- 
-function callback () {
-  console.log('called when snap animation ends')
+
+function scrollOut(event) {
+  if (event.scrollDirection == "REVERSE") {
+    // console.log('out')
+    // console.log(event.target.triggerElement())
+    // console.log(event)
+    // console.log('-----')
+    let currentTop = window.scrollY
+    let centerOffset = (window.innerHeight - getSectionHeight()) / 2
+    let targetTop = event.target.triggerElement().offsetTop - centerOffset
+
+    console.log(centerOffset)
+
+    tween({
+      from: currentTop,
+      to: targetTop,
+      duration: 400,
+      ease: easing.easeOut
+    }).start((v) => {
+      viewportStyler.set('scrollTop', v);
+    })
+  }
 }
- 
-const element = document.getElementById('scroll-container')
 
-console.log(element)
-const snapObject = new ScrollSnap(element, snapConfig)
- 
-snapObject.bind(callback)
+function scrollIn(event) {
+  if (event.scrollDirection == "FORWARD") {
+    // console.log('in')
+    // console.log(event.target.triggerElement())
+    // console.log(event)
+    // console.log('-----')
+    let currentTop = window.scrollY
+    let centerOffset = (window.innerHeight - getSectionHeight()) / 2
+    let targetTop = event.target.triggerElement().offsetTop - centerOffset
 
-console.log(snapObject)
+    console.log(centerOffset)
+
+    tween({
+      from: currentTop,
+      to: targetTop,
+      duration: 400,
+      ease: easing.easeOut
+    }).start((v) => {
+      viewportStyler.set('scrollTop', v);
+    })
+  }
+}

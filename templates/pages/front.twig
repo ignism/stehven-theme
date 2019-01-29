@@ -1,104 +1,170 @@
 {% extends 'base.twig' %}
-
+{# #}
 {% block header %}
-    <header class="section bg-purple-light pt-12 flex flex-wrap">
-        <div class="w-full flex flex-wrap">
-            <div class="w-1/2 px-8 text-red">ask</div>
-            <div class="w-1/2 px-8 text-white flex flex-col justify-center">
-                <div class="">
-                    <p>
-                        We support the Eindhoven<br/>
-                        student life with knowledge,<br/>
-                        money and an active network<br/>
-                        of students and professionals.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="w-full px-8 text-white">stehven</div>
-    </header>
-    {# <button id="zen">Zen Test</button> #}
-{% endblock %}
-{% block content %}
-    <section class="section flex flex-wrap">
-        <div class="px-8 bg-green w-1/2"></div>
-        <div class="bg-white w-1/2">
-            <div class="siema-wrapper relative">
-                <div class="siema-slider">
-                    <div class="siema-slide bg-grey-dark"></div>
-                    <div class="siema-slide bg-grey"></div>
-                    <div class="siema-slide bg-grey-light"></div>
-                </div>
-                <div class="siema-controls absolute pin-r pin-b flex">
-                    <button class="btn btn-prev w-12 h-12 bg-white"></button>
-                    <button class="btn btn-next w-12 h-12 bg-black"></button>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="section flex flex-wrap">
-        <div class="siema-triangle w-1/2 flex flex-col flex-wrap">
-            <div class="siema-slider">
-                <div class="siema-slide bg-red">
-                    <div class="w-full h-1/2 text-purple">
-                        {% include "partials/triangle-top-svg.twig" %}
-                    </div>
-                    <div class="w-full h-1/2 text-purple">
-                        {% include "partials/triangle-bottom-svg.twig" %}
-                    </div>
-                </div>
-                    <div class="siema-slide bg-purple">
-                    <div class="w-full h-1/2 text-red">
-                        {% include "partials/triangle-top-svg.twig" %}
-                    </div>
-                    <div class="w-full h-1/2 text-red">
-                        {% include "partials/triangle-bottom-svg.twig" %}
-                    </div>
-                </div>
+<header id="section-header" class="section bg-purple pt-24 flex flex-wrap">
+    <div class="w-full h-1/2 mx-12 pt-12 pb-6 relative">
+        <div class="w-full h-auto mt-12 mb-6 pin absolute">
+            <div class="w-full h-full absolute">
+                <img class="h-full w-auto opacity-0" id="header-ask" src="{{ theme.link }}/assets/images/header-ask.svg"
+                    alt="" />
+            </div>
+            <div class="w-full h-full absolute">
+                <img class="h-full w-auto opacity-0" id="header-meet" src="{{ theme.link }}/assets/images/header-meet.svg"
+                    alt="" />
+            </div>
+            <div class="w-full h-full absolute">
+                <img class="h-full w-auto opacity-0" id="header-join" src="{{ theme.link }}/assets/images/header-join.svg"
+                    alt="" />
             </div>
         </div>
-        <div class="px-8 py-8 bg-purple w-1/2"></div>
-    </section>
-    
-    <section class="section flex flex-wrap">
-        <div class="bg-white w-1/2">
-            <div class="siema-wrapper relative">
-                <div class="siema-slider">
-                    <div class="siema-slide bg-grey-dark"></div>
-                    <div class="siema-slide bg-grey"></div>
-                    <div class="siema-slide bg-grey-light"></div>
-                </div>
-                <div class="siema-controls absolute pin-r pin-b flex">
-                    <button class="btn btn-prev w-12 h-12 bg-white"></button>
-                    <button class="btn btn-next w-12 h-12 bg-black"></button>
-                </div>
-            </div>
-        </div>
-        <div class="px-8 bg-blue-light w-1/2">1</div>
-    </section>
-{% endblock %}
-
-{% block footer %}
-    <footer id="footer" class="section bg-purple-light flex flex-wrap flex-col justify-between">
-        <div class="w-full px-8 bg-white" style="height: 30vh">ask stehven</div>
-        <div class="w-full flex flex-wrap"  style="height: 60vh">
-            <div class="w-1/2 px-8 py-8 text-red">
-                <p>
-                    Contact us if you have<br/>
-                    a question, an idea or<br/>
-                    if you want to become<br/>
-                    part of Stehven.
+        <div class="w-1/2 ml-1/2 h-full px-12 absolute text-white flex flex-col justify-center">
+            <div class="">
+                <p class="text-4xl">
+                    We support the Eindhoven
+                    student life with knowledge,
+                    money and an active network
+                    of students and professionals.
                 </p>
             </div>
-            <div class="w-1/2 px-8 py-8 text-white text-right">
-                <div class="">
-                    <p>
-                        ask@stehven.nl
-                    </p>
-                </div>
+        </div>
+    </div>
+    <div class="w-full h-1/2 mx-12 pt-6 pb-12 text-white relative">
+        <div class="w-full h-auto mt-6 mb-12 pin absolute">
+            <div class="w-full h-full absolute">
+                <img class="h-full w-max-full" src="{{ theme.link }}/assets/images/logo-stehven.svg" alt="" />
             </div>
         </div>
-        <div class="w-full px-8 bg-black text-white" style="height: 10vh">social</div>
-    </footer>
+    </div>
+</header>
+
+
+{% endblock %}
+{# #}
+{% block content %}
+
+<section class="section flex flex-wrap">
+    <div class="w-1/2">
+        {% include "partials/hero.twig" with {
+        background: 'green',
+        title: 'asia week<br>eindhoven',
+        subtitle: '<span class="font-medium">Organized by</span><br>TU/e Students',
+        paragraph: 'Asia, are an indispensable and growing part regional industry and economy. With their presence
+        colors the city. Various international communities broaden the cultural face of Eindhoven.'
+        } %}
+    </div>
+    <div class="bg-white w-1/2">
+        {% include "components/siema-slider.twig" with {
+        options: {
+        perPage: 1,
+        loop: 1
+        }
+        } %}
+    </div>
+</section>
+
+{# Get support #}
+
+<section class="section flex flex-wrap">
+    {% include "components/siema-triangle.twig" with {
+    color1: 'red',
+    color2: 'purple'
+    } %}
+    <div class="px-12 py-12 bg-purple w-1/2 flex">
+        <div id="support-wrapper" class="h-full w-full overflow-hidden relative">
+            <img class="h-full w-max-full" src="{{ theme.link }}/assets/images/get-support.svg" />
+            <div id="here-wrapper" class="absolute pin-l pin-t">
+                <img class="absolute pin-b pin-r h-auto" src="{{ theme.link }}/assets/images/button-here.svg" />
+            </div>
+        </div>
+    </div>
+</section>
+
+{# Events #}
+{% set slide1 %}
+{% include "partials/hero.twig" with {
+background: 'blue',
+title: 'COMING <span class="text-red">UP</span><br>SAT-SUN<br><span class="text-red">26-27 JUNE</span>',
+subtitle: '<span class="font-medium">Organized by</span><br>TU/e Students',
+paragraph: ' TU/e in dialogue is organised by Studium Generale TU/e. Let’s meet, learn and debate around one the chosen
+theme: Facing the Future.'
+} %}
+{% endset %}
+
+{% set slide2 %}
+{% include "partials/hero.twig" with {
+background: 'red',
+title: 'COMING <span class="text-blue">UP</span><br>SAT-SUN<br><span class="text-blue">26-27 JUNE</span>',
+subtitle: '<span class="font-medium">Organized by</span><br>TU/e Students',
+paragraph: ' TU/e in dialogue is organised by Studium Generale TU/e. Let’s meet, learn and debate around one the chosen
+theme: Facing the Future.'
+} %}
+{% endset %}
+
+{% set slide3 %}
+{% include "partials/hero.twig" with {
+background: 'blue',
+title: 'COMING <span class="text-red">UP</span><br>SAT-SUN<br><span class="text-red">26-27 JUNE</span>',
+subtitle: '<span class="font-medium">Organized by</span><br>TU/e Students',
+paragraph: ' TU/e in dialogue is organised by Studium Generale TU/e. Let’s meet, learn and debate around one the chosen
+theme: Facing the Future.'
+} %}
+{% endset %}
+
+
+<section class="section flex flex-wrap">
+    <div class="bg-white w-full">
+        {% include "components/siema-slider.twig" with {
+        options: {
+        perPage: 2,
+        loop: 0
+        },
+        slides: [ slide1, slide2, slide3 ]
+        } %}
+    </div>
+</section>
+
+{% endblock %}
+{# #}
+{% block footer %}
+
+
+<footer id="footer" class="section bg-red flex flex-wrap flex-col justify-between">
+    <div class="w-full px-12 py-12 bg-white text-center" style="height: 40vh">
+        <img class="h-full max-w-full" src="{{ theme.link }}/assets/images/footer-ask-stehven.svg" alt="" />
+    </div>
+    <div class="w-full flex-1 flex flex-wrap relative" style="height: auto">
+        <div class="absolute pin z-10 text-center">
+            {# <img class="h-full max-w-full" src="{{ theme.link }}/assets/images/triangle-up.svg" alt="" /> #}
+            {% include "components/triangle-up-svg.twig" %}
+        </div>
+        <div class="w-1/2 px-12 py-12 relative z-20">
+            <p>
+                Contact us if you have<br />
+                a question, an idea or<br />
+                if you want to become<br />
+                part of Stehven.
+            </p>
+        </div>
+        <div class="w-1/2 px-12 py-12 text-right">
+            <div class="">
+                <p>
+                    ask@stehven.nl
+                </p>
+            </div>
+        </div>
+        <div class="zenscroll absolute w-16 h-16 pin-b pin-r z-40" data-direction="up">
+            <img src="{{ theme.link }}/assets/images/double-arrow-up.svg" alt="">
+        </div>
+    </div>
+    <div class="w-full px-12 flex justify-end bg-black text-white" style="height: 10vh">
+        <a class="w-12 h-12 my-6 ml-6" href="#">
+            <img src="{{ theme.link }}/assets/images/icon-instagram.svg" alt="">
+        </a>
+        <a class="w-12 h-12 my-6 ml-6" href="#">
+            <img src="{{ theme.link }}/assets/images/icon-facebook.svg" alt="">
+        </a>
+    </div>
+</footer>
+
 {% endblock %}

@@ -61,7 +61,11 @@
   * @import "utilities/skew-transforms";
   */
 
-body, .smooth-container { scroll-behavior: smooth }
+body, .smooth-container { 
+  scroll-behavior: smooth;
+  overflow: auto;
+  overflow:initial; 
+}
 
 button,
 button:active
@@ -71,28 +75,27 @@ button:focus {
 
 h1, h2 {
   font-family: 'Druk', sans-serif;
+  font-weight: 400;
 }
 
-/* ---- RESPONSIVE FULL PAGE ---- */
+h2 {
+  font-size: 9rem;
+  line-height: 0.85;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
 
-#scroll-container {
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-  scroll-snap-type: y mandatory;
-  scroll-snap-destination: 50% 50%;
-  scroll-snap-stop: always;
+.font-druk {
+  font-family: 'Druk', sans-serif;
 }
 
 .section {
-  transition: scroll-snap-align 800ms ease;
-  scroll-snap-align: center;
-  scroll-snap-coordinate: 50% 50%;
+  overflow-x: hidden;
 }
 
 .siema-slide,
 .section {
-  width: 100%;
   height: 100vh;
   min-height: 50vw;
   max-height: 100vw;
@@ -101,8 +104,68 @@ h1, h2 {
 /* ---- */
 
 #menu {
-  top: 0;
+  top: -96px;
   transition: top 200ms ease;
+}
+
+#submenu > li {
+  position: relative;
+  transition: top 200ms ease;
+  top: -96px;
+}
+
+#submenu > li:nth-child(1) {
+  transition-delay: 50ms;
+}
+#submenu > li:nth-child(2) {
+  transition-delay: 100ms;
+}
+#submenu > li:nth-child(3) {
+  transition-delay: 150ms;
+}
+#submenu > li:nth-child(4) {
+  transition-delay: 200ms;
+}
+
+#menu.active #submenu > li {
+  top: 0;
+}
+
+#burger {
+  cursor: pointer;
+}
+
+#burger > * {
+  transition: transform 200ms ease-out, opacity 200ms ease-out;
+}
+
+#menu.active #burger :nth-child(1) {
+  transform: translate(0, 0.8125rem) rotate(45deg);
+  transform-origin: 50%;
+}
+#menu.active #burger :nth-child(2) {
+  transform: translate(1rem, 0);
+  opacity: 0;
+  transform-origin: 50%;
+}
+#menu.active #burger :nth-child(3) {
+  transform: translate(0, -0.8125rem) rotate(-45deg);
+  transform-origin: 50%;
+}
+
+#progress-bar {
+  width: 3px;
+  height: 140px;
+  background: white;
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+
+#progress-bar .progress {
+  width: 3px;
+  height: 3px;
+  background: black;
+  transition: top 200ms ease-out;
 }
 
 /* ---- */
@@ -120,3 +183,5 @@ h1, h2 {
   border-bottom: 50vh solid transparent;
   border-left: 100% solid green;
 }
+
+/* ---- */
