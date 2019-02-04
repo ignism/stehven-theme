@@ -110,6 +110,7 @@ h3 {
 }
 
 .section {
+  position: relative;
   overflow: hidden;
 }
 
@@ -236,4 +237,28 @@ h3 {
 .step-option.active {
   background: white;
   color: $red;
+}
+
+/* ---- MEET */
+
+.portrait.big {
+  width: 50vw;
+  height: 50vw;
+}
+
+.portrait-row {
+  height: 50vw;
+}
+
+.small-portrait-row {
+  height: 25vw;
+}
+
+.portrait-overlay {
+  top: -50vw;
+  transition: top 200ms ease-out;
+}
+
+.portrait:hover .portrait-overlay{
+  top: 0;
 }

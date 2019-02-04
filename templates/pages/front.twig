@@ -1,5 +1,7 @@
 {% extends 'base.twig' %}
-{# #}
+
+{% set prefix = 'home_' ~ locale|getLang ~ '_' %}
+
 {% block header %}
 
 <header id="section-header" class="section bg-purple pt-24 flex flex-wrap">
@@ -21,10 +23,7 @@
         <div class="w-1/2 ml-1/2 h-full px-12 absolute text-white flex flex-col justify-center">
             <div class="">
                 <p class="text-4xl">
-                    We support the Eindhoven
-                    student life with knowledge,
-                    money and an active network
-                    of students and professionals.
+                    {{ page.meta(prefix ~ 'header_text') }}
                 </p>
             </div>
         </div>
@@ -36,21 +35,32 @@
             </div>
         </div>
     </div>
+        <div class="zenscroll absolute w-16 h-16 pin-b pin-r z-40 cursor-pointer" data-direction="down">
+        <img src="{{ theme.link }}/assets/images/double-arrow-down.svg" alt="">
+    </div>
 </header>
 
-
 {% endblock %}
+
 {# #}
+
 {% block content %}
 
+{% if event %}
+{% set slides = [] %}
+{% for item in event.meta('event_images') %}
+{% set slide = '<div class="w-full h-full" style="background-image: url(' ~ TimberImage(item.image).src ~ '); background-size: cover; background-position: center"></div>'
+%}
+{% set slides = slides|merge([ slide ]) %}
+{% endfor %}
 <section class="section flex flex-wrap">
     <div class="w-1/2">
         {% include "partials/hero.twig" with {
         background: 'green',
-        title: 'asia week<br>eindhoven',
-        subtitle: '<span class="font-medium">Organized by</span><br>TU/e Students',
-        paragraph: 'Asia, are an indispensable and growing part regional industry and economy. With their presence
-        colors the city. Various international communities broaden the cultural face of Eindhoven.'
+        title: event.title,
+        subtitle: '<span class="font-medium">Organized by</span><br>' ~ event.meta('event_' ~ locale|getLang ~
+        '_organizer'),
+        paragraph: event.meta('event_' ~ locale|getLang ~ '_description')
         } %}
     </div>
     <div class="bg-white w-1/2">
@@ -58,77 +68,96 @@
         options: {
         perPage: 1,
         loop: 1,
-        controls: 1
-        }
+        controls: 1,
+        draggable: 1
+        },
+        slides: slides,
         } %}
     </div>
 </section>
+{% endif %}
 
 {# Get support #}
 
 <section class="section flex flex-wrap">
-    {% include "components/siema-triangle.twig" with {
-    color1: 'red',
-    color2: 'purple'
-    } %}
+    <div class="w-1/2">
+        {% include "components/siema-triangle.twig" with {
+        color1: 'red',
+        color2: 'purple'
+        } %}
+    </div>
     <div class="px-12 py-12 bg-purple w-1/2 flex">
         <div id="support-wrapper" class="h-full w-full overflow-hidden relative">
             <img class="h-full w-max-full" src="{{ theme.link }}/assets/images/get-support.svg" />
             <div id="here-wrapper" class="absolute pin-l pin-t">
-                <img class="absolute pin-b pin-r h-auto" src="{{ theme.link }}/assets/images/button-here.svg" />
+                <a target="_blank" href="{{ page.meta(prefix ~ 'support_url') }}"><img class="absolute pin-b pin-r h-auto"
+                        src="{{ theme.link }}/assets/images/button-here.svg" /></a>
             </div>
         </div>
     </div>
 </section>
 
-{# Events #}
-{% set slide1 %}
+{# Upcoming #}
+
+{% set slides = [] %}
+{% set toggle = true %}
+
+{% for item in upcoming %}
+{% if toggle %}
+{% set background = 'blue' %}
+{% set accent = 'red' %}
+{% set toggle = false %}
+{% else %}
+{% set background = 'red' %}
+{% set accent = 'blue' %}
+{% set toggle = true %}
+{% endif %}
+
+
+{% set slide %}
+{% if item.meta('upcoming_has_end_date') == true %}
+{% set days = getDays(item.meta('upcoming_start_date'), item.meta('upcoming_end_date')) %}
+{% set date = getDates(item.meta('upcoming_start_date'), item.meta('upcoming_end_date')) %}
+{% else %}
+{% set days = getDay(item.meta('upcoming_start_date')) %}
+{% set date = getDate(item.meta('upcoming_start_date')) %}
+{% endif %}
+
 {% include "partials/hero.twig" with {
-background: 'blue',
-title: 'COMING <span class="text-red">UP</span><br>SAT-SUN<br><span class="text-red">26-27 JUNE</span>',
-subtitle: '<span class="font-medium">Organized by</span><br>TU/e Students',
-paragraph: ' TU/e in dialogue is organised by Studium Generale TU/e. Let’s meet, learn and debate around one the chosen
-theme: Facing the Future.'
+background: background,
+title: 'COMING <span class="text-'~ accent ~'">UP</span><br>' ~ days ~ '<br><span class="text-'~accent~'">' ~ date ~ '</span>',
+subtitle: '<span class="font-medium">' ~ item.title ~ '</span><br><br>' ~ '<span class="font-medium">Organized by</span><br>'
+~ item.meta('upcoming_' ~ locale|getLang ~ '_organizer'),
+paragraph: item.meta('upcoming_' ~ locale|getLang ~ '_description')
 } %}
 {% endset %}
 
-{% set slide2 %}
-{% include "partials/hero.twig" with {
-background: 'red',
-title: 'COMING <span class="text-blue">UP</span><br>SAT-SUN<br><span class="text-blue">26-27 JUNE</span>',
-subtitle: '<span class="font-medium">Organized by</span><br>TU/e Students',
-paragraph: ' TU/e in dialogue is organised by Studium Generale TU/e. Let’s meet, learn and debate around one the chosen
-theme: Facing the Future.'
-} %}
-{% endset %}
-
-{% set slide3 %}
-{% include "partials/hero.twig" with {
-background: 'blue',
-title: 'COMING <span class="text-red">UP</span><br>SAT-SUN<br><span class="text-red">26-27 JUNE</span>',
-subtitle: '<span class="font-medium">Organized by</span><br>TU/e Students',
-paragraph: ' TU/e in dialogue is organised by Studium Generale TU/e. Let’s meet, learn and debate around one the chosen
-theme: Facing the Future.'
-} %}
-{% endset %}
-
+{% set slides = slides|merge([slide]) %}
+{% endfor %}
 
 <section class="section flex flex-wrap">
-    <div class="bg-white w-full">
+    <div class="bg-blue w-full">
         {% include "components/siema-slider.twig" with {
         options: {
         perPage: 2,
-        loop: 0,
+        loop: 1,
         controls: 1,
-        draggable: 0
+        draggable: 1
         },
-        slides: [ slide1, slide2, slide3 ]
+        slides: slides
         } %}
     </div>
 </section>
 
 {% endblock %}
+
 {# #}
+
 {% block footer %}
-{% include "partials/footer-ask-stehven.twig" %}
+
+{% include "partials/footer-ask-stehven.twig" with {
+    text: page.meta(prefix ~ 'footer_text'),
+    mail: page.meta(prefix ~ 'footer_mail'),
+} %}
+
 {% endblock %}

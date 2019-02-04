@@ -1,0 +1,155 @@
+{% extends 'base.twig' %}
+
+{% set prefix = 'portfolio_' ~ locale|getLang ~ '_' %}
+
+{% block header %}
+<header class="section flex flex-col">
+    <div class="w-full pt-24 flex-1 bg-blue">
+        <div class="h-full relative">
+            <div class="m-12 h-auto pin absolute">
+                <img class="h-full max-w-full" src="{{ theme.link }}/assets/images/selected-events.svg" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="w-full h-1/2 flex-0 flex">
+        <div id="header-triangle" class="w-1/2 bg-blue text-red flex flex-wrap">
+            <div class="w-1/2">
+                {% include "components/triangle-bottom-mirror-svg.twig" %}
+            </div>
+            <div class="w-1/2">
+                {% include "components/triangle-bottom-svg.twig" %}
+            </div>
+        </div>
+        <div class="w-1/2 bg-white text-red flex flex-wrap items-center justify-center">
+            <p class="w-3/4 text-2xl">
+                {{ page.meta(prefix ~ 'header_text') }}
+            </p>
+        </div>
+    </div>
+        <div class="zenscroll absolute w-16 h-16 pin-b pin-r z-40 cursor-pointer" data-direction="down">
+        <img src="{{ theme.link }}/assets/images/double-arrow-down.svg" alt="">
+    </div>
+</header>
+
+{% endblock %}
+{# #}
+{% block content %}
+
+{% set ticker = 0 %}
+
+{% for item in events %}
+
+{% if ticker == 0 %}
+{% set color = 'purple' %} {% set ticker = ticker + 1 %}
+{% elseif ticker == 1 %}
+{% set color = 'blue' %} {% set ticker = ticker + 1 %}
+{% elseif ticker == 2 %}
+{% set color = 'red' %} {% set ticker = ticker + 1 %}
+{% elseif ticker == 3 %}
+{% set color = 'green' %} {% set ticker = ticker + 1 %}
+{% endif %}
+
+{% if ticker == 4 %} {% set ticker = 0 %} {% endif %}
+
+{% set slides = [] %}
+{% set imageSlides = [] %}
+
+{% for image in item.meta('event_images') %}
+{% set slideImage %}
+<div class="w-full h-full pt-48">
+    <div class="w-full h-full" style="background-image: url({{ TimberImage(image.image).src }}); background-size: cover; background-position: center"></div>
+</div>
+{% endset %}
+{% set imageSlides = imageSlides|merge([slideImage]) %}
+{% endfor %}
+
+{% set slides = slides|merge([imageSlides[0]]) %}
+
+{% set slideText %}
+<div class="w-full h-full pt-48 bg-{{ color }}">
+    <div class="w-full h-full px-12 py-6 flex flex-wrap justify-between">
+        <div class="w-1/2">
+            <p class="text-3xl">
+                {{ item.meta('event_' ~ locale|getLang ~ '_description') }}
+            </p>
+        </div>
+        <div class="w-1/4">
+            <p class="mb-8 text-2xl">
+                <span class="font-medium">
+                    {% if item.meta('event_has_end_date') %}
+                    {{ getDates(item.meta('event_start_date'), item.meta('event_end_date')) }}
+                    {% else %}
+                    {{ getDate(item.meta('event_start_date')) }}
+                    {% endif %}
+                </span><br>
+                {{ item.meta('event_location') }}
+            </p>
+            <p class="text-2xl">
+                <span class="font-medium">Organized by</span><br>
+                {{ item.meta('event_' ~ locale|getLang ~ '_organizer') }}
+            </p>
+        </div>
+    </div>
+</div>
+{% endset %}
+
+{% set slides = slides|merge([slideText]) %}
+
+{% if imageSlides|length > 1 %}
+{% for slide in imageSlides %}
+{% if loop.index0 != 0 %}
+{% set slides = slides|merge([imageSlides[loop.index0]]) %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<section class="section">
+    <div class="w-full px-12 h-48 bg-{{ color }} absolute z-20 flex items-center">
+        <h3>{{ item.title }}</h3>
+    </div>
+    <div class="w-full h-full absolute z-10">
+        {% include "components/siema-slider.twig" with {
+        options: {
+        draggeble: 1,
+        loop: 1,
+        controls: 1,
+        perPage: 1
+        },
+        slides: slides
+        } %}
+    </div>
+</section>
+{% endfor %}
+{# / event block #}
+
+{% endblock %}
+{# #}
+{% block footer %}
+
+<section class="section flex flex-wrap w-full h-full relative">
+    <div class="px-12 py-12 bg-purple w-1/2 flex">
+        <div id="support-wrapper" class="h-full w-full overflow-hidden relative">
+            <img class="h-full w-max-full" src="{{ theme.link }}/assets/images/get-support.svg" />
+            <div id="here-wrapper" class="absolute pin-l pin-t">
+                <a target="_blank" href="{{ page.meta(prefix ~ 'support_url') }}">
+                    <img class="absolute pin-b pin-r h-auto" src="{{ theme.link }}/assets/images/button-here.svg" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="w-1/2">
+        {% include "components/siema-triangle.twig" with {
+        color1: 'red',
+        color2: 'purple',
+        direction: 'left'
+        } %}
+    </div>
+            <div class="zenscroll absolute w-16 h-16 pin-b pin-r z-40 cursor-pointer" data-direction="up">
+            <img src="{{ theme.link }}/assets/images/double-arrow-up.svg" alt="">
+        </div>
+</section>
+<div class="relative w-full h-24 bg-black z-40">
+    {% include "components/social.twig" %}
+</div>
+
+{% endblock %}

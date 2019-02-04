@@ -12,6 +12,7 @@ import _ from 'lodash'
   let threshold = 96 // window.innerHeight / 8
   let tickerDown = 0
   let tickerUp = 0
+  let triggeredByMouse = false;
 
   let init = () => {
     menu.style.width = menuWrapper.clientWidth + 'px'
@@ -22,11 +23,19 @@ import _ from 'lodash'
 
   burger.onclick = (event) => {
     menu.classList.toggle('active')
+    showMenu()
   }
 
   window.onmousemove = (event) => {
-    if (event.clientY < 20) {
+    if (event.clientY < 96) {
       showMenu()
+      triggeredByMouse = true;
+    }
+
+    if (event.clientY > window.innerHeight / 3) {
+      if (triggeredByMouse) {
+        hideMenu()
+      }
     }
   }
 
@@ -61,7 +70,7 @@ import _ from 'lodash'
       // showMenu()
       // console.log(threshold + ':' + Math.abs(startOffset - currOffset))
       if (Math.abs(startOffset - currOffset) > threshold) {
-        showMenu()
+        // NAAAAAHHHH showMenu()
       }
     }
     
@@ -75,6 +84,7 @@ import _ from 'lodash'
   }
 
   function showMenu() {
+    // menu.classList.add('active')
     menu.style.top = 0
   }
 })()

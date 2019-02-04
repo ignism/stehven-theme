@@ -1,8 +1,8 @@
 <?php
-/* Template Name: Ask Page */
+/* Template Name: Contact Page */
 
 $context = Timber::get_context();
 $context['page'] = new TimberPost();
-
-$templates = array( 'pages/ask.twig' );
+// $context['locale'] = get_locale();
+$templates = array( 'pages/contact.twig' );
 Timber::render( $templates, $context);

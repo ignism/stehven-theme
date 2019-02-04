@@ -10,7 +10,6 @@ import {
 } from "stylefire";
 
 if (document.body.classList.contains('page-template-page-front')) {
-
   const askStyler = styler(document.getElementById("header-ask"))
   const askKeyframes = keyframes({
     values: [{
@@ -147,4 +146,47 @@ if (document.body.classList.contains('page-template-page-front')) {
     })
   }, 6000)
 
+}
+
+if (document.getElementById("header-triangle")) {
+  console.log('tick')
+  const headerStyler = styler(document.getElementById("header-triangle"))
+  console.log(headerStyler)
+  const headerKeyframes = keyframes({
+    values: [{
+        color: "#fd4635",
+        background: "#46D5FF"
+      }, // 0
+      {
+        color: "#14B978",
+        background: "#9854FC"
+      }, // 0.06667
+      {
+        color: "#14B978",
+        background: "#9854FC"
+      }, // 0.33333
+      {
+        color: "#9854FC",
+        background: "#fd4635"
+      }, // 0.4
+      {
+        color: "#9854FC",
+        background: "#fd4635"
+      }, // 0.66667
+      {
+        color: "#fd4635",
+        background: "#46D5FF"
+      }, // 0.73333
+      {
+        color: "#fd4635",
+        background: "#46D5FF"
+      }, // 1
+    ],
+    times: [0, 0.06667, 0.33333, 0.4, 0.66667, 0.73333, 1],
+    easings: easing.linear,
+    duration: 6000,
+    loop: Infinity
+  })
+
+  headerKeyframes.start(v => headerStyler.set(v))
 }

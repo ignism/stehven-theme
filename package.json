@@ -40,6 +40,7 @@
     "popmotion": "^8.6.1",
     "postcss-simple-vars": "^5.0.1",
     "scrollmagic": "^2.0.6",
-    "siema": "^1.5.1"
+    "siema": "^1.5.1",
+    "zenscroll": "^4.0.2"
   }
 }

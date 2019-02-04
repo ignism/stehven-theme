@@ -4,7 +4,7 @@ import {
   styler
 } from "popmotion";
 
-if (document.body.classList.contains('page-template-page-front')) {
+if (document.getElementById('support-wrapper')) {
   let ratio = {
     w: 617,
     h: 836,

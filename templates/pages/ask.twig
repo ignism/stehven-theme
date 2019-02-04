@@ -1,12 +1,11 @@
 {% extends 'base.twig' %}
-{# #}
+{% set prefix = 'ask_' ~ locale|getLang ~ '_' %}
 {% block header %}
 <header class="section flex flex-col">
     <div class="w-full pt-24 flex-1 bg-red">
         <div class="h-full relative">
             <div class="m-12 h-auto pin absolute">
-                <img class="h-full max-w-full" src="{{ theme.link }}/assets/images/just-ask-us-for.svg" alt="">
-            </div>
+                <img class="h-full max-w-full" src="{{ theme.link }}/assets/images/just-ask-us-for.svg" alt=""></div>
         </div>
     </div>
     <div class="w-full h-1/2 flex-0 flex bg-purple">
@@ -28,58 +27,64 @@
             </div>
         </div>
         <div class="w-1/2">
-            {% set slide1 %}
+            {% set slideKnowledge %}
             <div class="w-full h-full relative">
                 <div class="pin absolute mx-24 my-12 flex flex-col">
                     <div class="flex-1">
                         <p class="text-3xl font-medium mb-4">
-                            [TITLE 1]
+                            {{ page.meta(prefix ~ 'knowledge_title') }}
                         </p>
                         <p class="text-2xl">
-                            [PARAGRAPH]
+                            {{ page.meta(prefix ~ 'knowledge_description') }}
                         </p>
                     </div>
                     <div class="flex-0">
                         <p class="text-2xl font-medium">
-                            For more information <a class="text-red" href="mailto:ask@stehven.nl">ask@stehven.nl</a>
+                            For more information
+                            <a class="text-red" href="{{ page.meta(prefix ~ 'mail') }}">
+                                {{ page.meta(prefix ~ 'mail') }}</a>
                         </p>
                     </div>
                 </div>
             </div>
             {% endset %}
-            {% set slide2 %}
+            {% set slideMoney %}
             <div class="w-full h-full relative">
                 <div class="pin absolute mx-24 my-12 flex flex-col">
                     <div class="flex-1">
                         <p class="text-3xl font-medium mb-4">
-                            [TITLE 2]
+                            {{ page.meta(prefix ~ 'money_title') }}
                         </p>
                         <p class="text-2xl">
-                            [PARAGRAPH]
+                            {{ page.meta(prefix ~ 'money_description') }}
                         </p>
                     </div>
                     <div class="flex-0">
                         <p class="text-2xl font-medium">
-                            For more information <a class="text-red" href="mailto:ask@stehven.nl">ask@stehven.nl</a>
+                            For more information
+                            <a class="text-red" href="{{ page.meta(prefix ~ 'mail') }}">
+                                {{ page.meta(prefix ~ 'mail') }}</a>
                         </p>
                     </div>
                 </div>
             </div>
             {% endset %}
-            {% set slide3 %}
+            {% set slideNetwork %}
             <div class="w-full h-full relative">
                 <div class="pin absolute mx-24 my-12 flex flex-col">
                     <div class="flex-1">
                         <p class="text-3xl font-medium mb-4">
-                            [TITLE 3]
+                            {{ page.meta(prefix ~ 'network_title') }}
                         </p>
                         <p class="text-2xl">
-                            [PARAGRAPH]
+                            {{ page.meta(prefix ~ 'network_description') }}
                         </p>
                     </div>
                     <div class="flex-0">
                         <p class="text-2xl font-medium">
-                            For more information <a class="text-red" href="mailto:ask@stehven.nl">ask@stehven.nl</a>
+                            For more information
+                            <a class="text-red" href="{{ page.meta(prefix ~ 'mail') }}">
+                                {{ page.meta(prefix ~ 'mail') }}</a>
                         </p>
                     </div>
                 </div>
@@ -94,40 +99,35 @@
             draggable: 0,
             navigationClass: 'ask-option'
             },
-            slides: [ slide1, slide2, slide3 ]
+            slides: [ slideKnowledge, slideMoney, slideNetwork ]
             } %}
         </div>
+    </div>
+        <div class="zenscroll absolute w-16 h-16 pin-b pin-r z-40 cursor-pointer" data-direction="down">
+        <img src="{{ theme.link }}/assets/images/double-arrow-down.svg" alt="">
     </div>
 </header>
 {% endblock %}
 {# #}
 {% block content %}
-<section id="matter-animation" class="section flex flex-wrap">
+<section class="section flex flex-wrap" id="matter-animation">
     <div class="w-1/2 h-full relative">
-        <div id="debug" class="absolute pin z-50">
-        </div>
-        <div id="frame" class="bg-white w-full h-full">
-            <div id="boxNot" class="matter-static opacity-100">
-                <img src="{{ theme.link }}/assets/images/not.svg" style="max-width: none; width: 100%; height: 100%;">
-            </div>
-            <div id="boxJust" class="matter-static opacity-100">
-                <img src="{{ theme.link }}/assets/images/just.svg" style="max-width: none; width: 100%; height: 100%;">
-            </div>
-            <div id="charB" class="matter-body">
-                <img src="{{ theme.link }}/assets/images/char-b.svg" style="max-width: none; width: 100%; height: 100%;">
-            </div>
-            <div id="charE1" class="matter-body">
-                <img src="{{ theme.link }}/assets/images/char-e.svg" style="max-width: none; width: 100%; height: 100%;">
-            </div>
-            <div id="charE2" class="matter-body">
-                <img src="{{ theme.link }}/assets/images/char-e.svg" style="max-width: none; width: 100%; height: 100%;">
-            </div>
-            <div id="charR" class="matter-body">
-                <img src="{{ theme.link }}/assets/images/char-r.svg" style="max-width: none; width: 100%; height: 100%;">
-            </div>
-            <div id="charS" class="matter-body">
-                <img src="{{ theme.link }}/assets/images/char-s.svg" style="max-width: none; width: 100%; height: 100%;">
-            </div>
+        <div class="absolute pin z-50" id="debug"></div>
+        <div class="bg-white w-full h-full" id="frame">
+            <div class="matter-static opacity-100" id="boxNot">
+                <img src="{{ theme.link }}/assets/images/not.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+            <div class="matter-static opacity-100" id="boxJust">
+                <img src="{{ theme.link }}/assets/images/just.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+            <div class="matter-body" id="charB">
+                <img src="{{ theme.link }}/assets/images/char-b.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+            <div class="matter-body" id="charE1">
+                <img src="{{ theme.link }}/assets/images/char-e.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+            <div class="matter-body" id="charE2">
+                <img src="{{ theme.link }}/assets/images/char-e.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+            <div class="matter-body" id="charR">
+                <img src="{{ theme.link }}/assets/images/char-r.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+            <div class="matter-body" id="charS">
+                <img src="{{ theme.link }}/assets/images/char-s.svg" style="max-width: none; width: 100%; height: 100%;"></div>
         </div>
     </div>
     <div class="w-1/2 relative">
@@ -136,17 +136,17 @@
         </div>
         <div class="absolute px-12 py-12 w-full h-full text-white">
             <p class="w-3/4 text-2xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quisquam quo mollitia, obcaecati cumque ratione amet corporis dolore perferendis veniam vero perspiciatis autem natus qui illum commodi porro esse eveniet.
+                {{ page.meta(prefix ~ 'hint')}}
             </p>
         </div>
     </div>
 </section>
-
 <section class="section flex flex-wrap">
     <div class="w-1/2 flex flex-col">
         <div class="px-12 w-full flex flex-col justify-center h-1/2 bg-red">
             <h2>
-                <span class="text-blue">steps</span><br>
+                <span class="text-blue">steps</span>
+                <br>
                 to apply
             </h2>
         </div>
@@ -169,8 +169,7 @@
             <div class="w-full h-full relative">
                 <div class="pin absolute mx-12 my-6 flex flex-col justify-center">
                     <p class="text-2xl text-red w-3/4">
-                        1 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, laborum atque. Quod iste
-                        debitis ut quam in quaerat iusto.
+                        {{ page.meta(prefix ~ 'step_1') }}
                     </p>
                 </div>
             </div>
@@ -179,8 +178,7 @@
             <div class="w-full h-full relative">
                 <div class="pin absolute mx-12 my-6 flex flex-col justify-center">
                     <p class="text-2xl text-red w-3/4">
-                        2 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, laborum atque. Quod iste
-                        debitis ut quam in quaerat iusto.
+                        {{ page.meta(prefix ~ 'step_2') }}
                     </p>
                 </div>
             </div>
@@ -189,8 +187,7 @@
             <div class="w-full h-full relative">
                 <div class="pin absolute mx-12 my-6 flex flex-col justify-center">
                     <p class="text-2xl text-red w-3/4">
-                        3 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, laborum atque. Quod iste
-                        debitis ut quam in quaerat iusto.
+                        {{ page.meta(prefix ~ 'step_3') }}
                     </p>
                 </div>
             </div>
@@ -199,8 +196,7 @@
             <div class="w-full h-full relative">
                 <div class="pin absolute mx-12 my-6 flex flex-col justify-center">
                     <p class="text-2xl text-red w-3/4">
-                        4 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, laborum atque. Quod iste
-                        debitis ut quam in quaerat iusto.
+                        {{ page.meta(prefix ~ 'step_4') }}
                     </p>
                 </div>
             </div>
@@ -219,13 +215,17 @@
     </div>
     <div class="w-1/2 p-32 bg-blue">
         <div class="w-full h-full">
-            <img id="submit-button" class="h-full max-w-full" src="{{ theme.link }}/assets/images/submit-button.svg"
-                alt="">
+            <a target="_blank" href="{{ page.meta(prefix ~ 'application_url') }}">
+                <img id="submit-button" class="h-full max-w-full" src="{{ theme.link }}/assets/images/submit-button.svg"
+                    alt=""></a>
         </div>
     </div>
 </section>
 {% endblock %}
 {# #}
 {% block footer %}
-{% include "partials/footer-ask-stehven.twig" %}
+{% include "partials/footer-ask-stehven.twig" with {
+text: page.meta(prefix ~ 'footer_text'),
+mail: page.meta(prefix ~ 'footer_mail'),
+} %}
 {% endblock %}

@@ -86,16 +86,13 @@ import Siema from "siema"
       onChange: () => {}
     })
 
-    setInterval(() => siema.prev(), 2000)
+    if (triangle.getAttribute('data-direction') === 'left') {
+      setInterval(() => siema.next(), 2000)
+    } else {
+      setInterval(() => siema.prev(), 2000)
+    }
+
   })
-
-  // siemaWrappers.forEach((element) => {
-  //   const sliderChild = element.querySelector(".siema-slider > div")
-    
-  //   let num = sliderChild.children.length
-
-  //   sliderChild.style.width = element.clientWidth * num + 'px'
-  // })
 
   setTimeout(() => {
     window.dispatchEvent(new Event('resize'));
