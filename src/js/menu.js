@@ -39,6 +39,18 @@ import _ from 'lodash'
     }
   }
 
+  let sections = document.getElementsByClassName('section')
+
+    if (sections[sections.length - 1].classList.contains('bg-white')) {
+      if (Math.abs(currOffset - sections[sections.length - 1].offsetTop) < 100) {
+        burger.classList.add('invert')
+        burger.classList.add('white')
+      } else {
+        burger.classList.remove('invert')
+      }
+    }
+
+
   window.addEventListener('resize', _.debounce(() => {
     menu.style.width = menuWrapper.clientWidth + 'px'
   }, 100))
@@ -75,16 +87,28 @@ import _ from 'lodash'
     }
     
     prevOffset = currOffset
+
+    let sections = document.getElementsByClassName('section')
+
+    if (sections[sections.length - 1].classList.contains('bg-white')) {
+      if (Math.abs(currOffset - sections[sections.length - 1].offsetTop) < 100) {
+        burger.classList.add('invert')
+      } else {
+        burger.classList.remove('invert')
+      }
+    }
   })
   
 
   function hideMenu() {
     menu.style.top = '-' + menu.clientHeight + 'px'
     menu.classList.remove('active')
+    burger.classList.remove('white')
   }
 
   function showMenu() {
     // menu.classList.add('active')
     menu.style.top = 0
+    burger.classList.add('white')
   }
 })()

@@ -168,6 +168,15 @@ h3 {
 
 #burger > * {
   transition: transform 200ms ease-out, opacity 200ms ease-out;
+  border-color: white;
+}
+
+#burger.invert > * {
+  border-color: black;
+}
+
+#burger.white.invert > * {
+  border-color: white !important;
 }
 
 #menu.active #burger :nth-child(1) {
@@ -187,7 +196,7 @@ h3 {
 #progress-bar {
   width: 3px;
   height: 140px;
-  background: white;
+  background: rgba(0, 0, 0, 0.2);
   opacity: 0;
   transition: opacity 200ms ease-out;
 }

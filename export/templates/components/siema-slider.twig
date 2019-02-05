@@ -1,0 +1,36 @@
+{#
+options: {
+perPage: 2,
+loop: 0,
+controls: 1,
+draggable: 0
+}
+#}
+
+<div class="siema-wrapper w-full relative" data-per-page="{{ options.perPage }}" data-loop="{{ options.loop }}"
+    data-draggable="{{ options.draggable }}" data-navigation-class="{{ options.navigationClass }}">
+    <div class="siema-slider">
+        {% if slides %}
+        {% for slide in slides %}
+        <div class="siema-slide">
+            {{ slide }}
+        </div>
+        {% endfor %}
+        {% else %} <div class="siema-slide">
+            <div class="w-full h-full bg-grey-dark"></div>
+        </div>
+        <div class="siema-slide">
+            <div class="w-full h-full bg-grey-darker"></div>
+        </div>
+        <div class="siema-slide">
+            <div class="w-full h-full bg-grey-light"></div>
+        </div>
+        <div class="siema-slide">
+            <div class="w-full h-full bg-grey-darker"></div>
+        </div>
+        {% endif %}
+    </div>
+    {% if options.controls %}
+    {% include "components/siema-controls.twig" %}
+    {% endif %}
+</div>

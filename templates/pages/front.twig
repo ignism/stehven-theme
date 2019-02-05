@@ -90,7 +90,13 @@
         <div id="support-wrapper" class="h-full w-full overflow-hidden relative">
             <img class="h-full w-max-full" src="{{ theme.link }}/assets/images/get-support.svg" />
             <div id="here-wrapper" class="absolute pin-l pin-t">
-                <a target="_blank" href="{{ page.meta(prefix ~ 'support_url') }}"><img class="absolute pin-b pin-r h-auto"
+                {% if locale == 'en_GB' %}
+                  {% set askLink = '/en/en-ask' %}
+                {% else %}
+                  {% set askLink = '/nl-ask' %}
+                {% endif %}
+                
+                <a href="{{ site.url ~ askLink }}"><img class="absolute pin-b pin-r h-auto"
                         src="{{ theme.link }}/assets/images/button-here.svg" /></a>
             </div>
         </div>

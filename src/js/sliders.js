@@ -16,8 +16,8 @@ import Siema from "siema"
     
     const siema = new Siema({
       selector: slider,
-      duration: 200,
-      easing: "ease-out",
+      duration: 400,
+      easing: 'ease-in-out',
       perPage: perPage,
       startIndex: 0,
       draggable: draggable,
@@ -41,28 +41,66 @@ import Siema from "siema"
     if (navigationClass) {
       let navigationItems = Array.from(document.getElementsByClassName(navigationClass))
 
+      let index = 0;
+  
+      let navOptionInterval = window.setInterval(() => {
+        index++;
+        
+        let navigationItems = Array.from(document.getElementsByClassName(navigationClass))
+        if (index == navigationItems.length) index = 0;
+
+        siema.goTo(index)
+        disableOptions()
+        navigationItems[index].classList.add('active')
+      
+      }, 2000)
+
       for (let i = 0; i < navigationItems.length; i++) {
         let item = navigationItems[i]
 
         item.addEventListener('mouseover', (event) => {
+          if(navOptionInterval) {
+            window.clearInterval(navOptionInterval)
+          }
           disableOptions()
           item.classList.add('active')
+          item.classList.add('mouseover')
           siema.goTo(i)
         })
 
         item.addEventListener('touchstart', (event) => {
           disableOptions()
+
           item.classList.add('active')
+          item.classList.add('mouseover')
           siema.goTo(i)
+        })
+
+        item.addEventListener('mouseout', (event) => {
+          navOptionInterval = window.setInterval(() => {
+            index++;
+            
+            let navigationItems = Array.from(document.getElementsByClassName(navigationClass))
+            if (index == navigationItems.length) index = 0;
+    
+            siema.goTo(index)
+            disableOptions()
+            navigationItems[index].classList.add('active')
+          
+          }, 2000)
         })
       }
 
       function disableOptions() {
         navigationItems.forEach((item) => {
           item.classList.remove('active')
+          item.classList.remove('mouseover')
         })
       }
 
+      if (navigationClass == 'ask-option') {
+        
+      }
     }
   })
 
@@ -75,8 +113,8 @@ import Siema from "siema"
 
     const siema = new Siema({
       selector: slider,
-      duration: 400,
-      easing: "ease-out",
+      duration: 800,
+      easing: 'cubic-bezier(0.000, 0.333, 0.000, 1.0)',
       perPage: 1,
       startIndex: 0,
       draggable: false,

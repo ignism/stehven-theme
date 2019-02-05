@@ -29,8 +29,8 @@ if (animationElement) {
   // project variables
   const ratio = {
     world: {
-      width: 837,
-      height: 1280
+      width: 720,
+      height: 1100
     },
     boxNot: {
       width: 194.4,

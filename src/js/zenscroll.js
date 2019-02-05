@@ -9,7 +9,7 @@ if (zenButtons) {
     
     zen.onclick = () => {
       if (zen.getAttribute('data-direction') === 'up') {
-        zenscroll.to(sections[sections.length - 2], 400)
+        zenscroll.to(sections[0], 2000)
       } else {
         zenscroll.to(sections[1], 400)
       }

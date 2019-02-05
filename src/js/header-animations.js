@@ -3,7 +3,8 @@ import {
   keyframes,
   spring,
   styler,
-  easing
+  easing,
+  tween
 } from "popmotion"
 import {
   buildStyleProperty
@@ -190,3 +191,136 @@ if (document.getElementById("header-triangle")) {
 
   headerKeyframes.start(v => headerStyler.set(v))
 }
+
+const meetRed = document.getElementById('meet-red')
+const meetGreen = document.getElementById('meet-green')
+
+if (meetRed && meetGreen) {
+  let fromLeftTopRed = styler(meetRed.querySelector('.from-left-top'))
+  let fromLeftBottomRed = styler(meetRed.querySelector('.from-left-bottom'))
+  let fromRightTopRed = styler(meetRed.querySelector('.from-right-top'))
+  let fromRightBottomRed = styler(meetRed.querySelector('.from-right-bottom'))
+
+  let fromLeftTopGreen = styler(meetGreen.querySelector('.from-left-top'))
+  let fromLeftBottomGreen = styler(meetGreen.querySelector('.from-left-bottom'))
+  let fromRightTopGreen = styler(meetGreen.querySelector('.from-right-top'))
+  let fromRightBottomGreen = styler(meetGreen.querySelector('.from-right-bottom'))
+
+  let slideFromLeft = tween({
+    from: { x: '-100%' },
+    to: 0,
+    duration: 1000,
+    ease: easing.easeOut
+  })
+
+  let slideFromRight = tween({
+    from: { x: '100%' },
+    to: 0,
+    duration: 1000,
+    ease: easing.easeOut
+  })
+
+  recursive();
+
+  setInterval(() => {
+    recursive()
+  }, 2000)
+
+  function recursive() {
+    fromLeftTopGreen.set({ x: '-100%' })
+    fromLeftBottomGreen.set({ x: '-100%' })
+    fromRightTopGreen.set({ x: '100%' })
+    fromRightBottomGreen.set({ x: '100%' })
+
+    slideFromLeft.start({
+      update: (v) => {
+        fromLeftTopRed.set(v)
+        fromLeftBottomRed.set(v)
+      },
+      complete: () => {
+        slideFromLeft.start({
+          update: (v) => {
+            fromLeftTopGreen.set(v)
+            fromLeftBottomGreen.set(v)
+          },
+          complete: () => {
+            fromLeftTopRed.set({ x: '-100%' })
+            fromLeftBottomRed.set({ x: '-100%' })
+          }
+        })
+      }
+    })
+
+    slideFromRight.start({
+      update: (v) => {
+        fromRightTopRed.set(v)
+        fromRightBottomRed.set(v)
+      },
+      complete: () => {
+        slideFromRight.start({
+          update: (v) => {
+            fromRightTopGreen.set(v)
+            fromRightBottomGreen.set(v)
+          },
+          complete: () => {
+            fromRightTopRed.set({ x: '100%' })
+            fromRightBottomRed.set({ x: '100%' })
+          }
+        })
+      }
+    })
+  }
+}
+
+const eventTriangle = document.getElementById('event-triangle')
+
+if (eventTriangle) {
+  let fromTopRed = styler(eventTriangle.querySelector('.from-top-red'))
+  let fromTopBlue = styler(eventTriangle.querySelector('.from-top-blue'))
+  
+
+  console.log(eventTriangle.querySelector('.from-top-red'))
+  console.log(eventTriangle.querySelector('.from-top-blue'))
+
+  let slideIn = tween({
+    from: {y: '-100%'},
+    to: {y: '0%'},
+    duration: 1000,
+    ease: easing.easeOut
+  })
+
+  let slideOut = tween({
+    from: {y: '0%'},
+    to: {y: '100%'},
+    duration: 1000,
+    ease: easing.easeOut
+  })
+
+  let simpleSlider = () => {
+    fromTopBlue.set({y: '-100%'})
+    eventTriangle.classList.remove('bg-blue')
+    eventTriangle.classList.add('bg-red')
+
+    slideIn.start(fromTopBlue.set)
+    slideOut.start({
+      update: (v) => {
+        fromTopRed.set(v)},
+      complete: () => {
+        fromTopRed.set({y: '-100%'})
+        eventTriangle.classList.remove('bg-red')
+        eventTriangle.classList.add('bg-blue')
+        slideIn.start(fromTopRed.set)
+        slideOut.start(fromTopBlue.set)
+      }
+    })
+
+  }
+
+  simpleSlider()
+
+  setInterval(() => {
+    simpleSlider()
+  }, 2000)
+
+}
+

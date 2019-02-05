@@ -21,7 +21,7 @@ if (document.getElementById('support-wrapper')) {
   let hereButton = hereWrapper.querySelector('img')
   let hereStyler = new styler(hereButton)
 
-  new tween({
+  let playback = new tween({
     from: 0,
     to: {
       rotate: 360
@@ -30,6 +30,14 @@ if (document.getElementById('support-wrapper')) {
     loop: Infinity,
     ease: easing.linear,
   }).start(hereStyler.set)
+
+  hereButton.addEventListener('mouseover', (event) => {
+    playback.pause()
+  })
+
+  hereButton.addEventListener('mouseout', (event) => {
+    playback.resume()
+  })
 
 
   window.addEventListener('resize', _.debounce(() => {
@@ -60,8 +68,7 @@ if (document.body.classList.contains('page-template-page-ask')) {
   let submitButton = document.getElementById('submit-button')
   let submitStyler = styler(submitButton)
 
-
-  new tween({
+  let playback = new tween({
     from: 0,
     to: {
       rotate: 360
@@ -70,4 +77,12 @@ if (document.body.classList.contains('page-template-page-ask')) {
     loop: Infinity,
     ease: easing.linear,
   }).start(submitStyler.set)
+
+  submitButton.addEventListener('mouseover', (event) => {
+    playback.pause()
+  })
+
+  submitButton.addEventListener('mouseout', (event) => {
+    playback.resume()
+  })
 }
