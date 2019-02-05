@@ -274,8 +274,39 @@ if (animationElement) {
     resetBoxJust()
     resetBoxNot()
 
+    chars.forEach(char => {
+      resetChar(char.body)
+    })
+
     resizeRenderer()
   }
+
+  function resetChar(body) {
+    let worldVector = Matter.Vector.create(world.width, world.height)
+    let prevVector = Matter.Vector.create(world.prevWidth, world.prevHeight)
+    let scale =
+      Matter.Vector.magnitude(worldVector) / Matter.Vector.magnitude(prevVector)
+
+    let vertices = Array.from(body.vertices)
+    vertices[0].x *= scale
+    vertices[0].y *= scale
+    vertices[1].x *= scale
+    vertices[1].y *= scale
+    vertices[2].x *= scale
+    vertices[2].y *= scale
+    vertices[3].x *= scale
+    vertices[3].y *= scale
+
+    let w = body.vertices[1].x - body.vertices[0].x
+    let h = body.vertices[3].y - body.vertices[0].y
+
+    Body.setVertices(body, vertices)
+    // Body.setPosition(
+    //   boxNot,
+    //   Matter.Vector.create(w / 2 + ml, world.height - hj - h / 2 - mb)
+    // )
+  }
+
 
   function resetBoxNot() {
     let worldVector = Matter.Vector.create(world.width, world.height)
@@ -369,8 +400,11 @@ if (animationElement) {
 
   // events
   window.addEventListener('resize', _.debounce(() => {
+    console.log('matter resize')
     resizeWorld()
-  }, 100))
+  }, 200))
+
+  let isHussling = false
 
   function reset() {
     if (firstTime) {
@@ -378,9 +412,15 @@ if (animationElement) {
       firstTime = false;
     } else {
       if (chars) {
-        chars.forEach(char => {
-          hussle(char.body)
-        })
+        if (isHussling == false) {
+          isHussling = true
+          chars.forEach(char => {
+            hussle(char.body)
+          })
+          setTimeout(() => {
+            isHussling = false
+          }, 1000)
+        }
       }
     }
   }
@@ -412,8 +452,9 @@ if (animationElement) {
   }
 
   function hussle(body) {
+    let scale = 16;
     Body.setAngularVelocity(body, Math.random() * 0.1 - 0.05)
-    Body.setVelocity(body, Matter.Vector.create(Math.random() * 0.1 - 0.05, Math.random() * 0.1 - 0.05))
+    Body.setVelocity(body, Matter.Vector.create((Math.random() - 0.5) * scale, (Math.random() - 0.5) * scale))
   }
 
   function placeOffScreen(body) {
