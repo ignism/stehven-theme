@@ -1,9 +1,0 @@
-/*
-Theme Name: Stehven Timber Theme
-Version: 0.1.0
-Author: Mark Brand
-Description: A Timber wordpress theme boilerplate using tailwindcss.
-*/
-
-@import './assets/fonts/fonts.css';
-@import './dist/bundle.css';
