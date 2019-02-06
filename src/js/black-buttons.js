@@ -40,7 +40,7 @@ if (document.getElementById('support-wrapper')) {
   })
 
 
-  window.addEventListener('resize', _.debounce(() => {
+  window.addEventListener('resize', () => {
     if (supportWrapper.clientWidth / supportWrapper.clientHeight < ratio.r) {
       // full width
       let w = supportWrapper.clientWidth
@@ -61,7 +61,7 @@ if (document.getElementById('support-wrapper')) {
     }
 
     hereButton.style.width = hereWrapper.clientWidth * 0.32 + 'px'
-  }, 10))
+  })
 }
 
 if (document.body.classList.contains('page-template-page-ask')) {

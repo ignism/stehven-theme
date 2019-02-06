@@ -127,6 +127,7 @@ module.exports = {
 
   fonts: {
     'sans': [
+      'PostGrotesk',
       'system-ui',
       'BlinkMacSystemFont',
       '-apple-system',
@@ -509,6 +510,7 @@ module.exports = {
 
   minHeight: {
     '0': '0',
+    '32': '8rem',
     'full': '100%',
     'screen': '100vh'
   },

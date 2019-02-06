@@ -4,6 +4,7 @@ import _ from 'lodash'
   let menuWrapper = document.getElementById('menu-wrapper')
   let menu = document.getElementById('menu')
   let burger = document.getElementById('burger')
+  let burgerMobile = document.getElementById('burger-mobile')
 
   let currOffset = 0
   let prevOffset = 0
@@ -22,6 +23,11 @@ import _ from 'lodash'
   init()
 
   burger.onclick = (event) => {
+    menu.classList.toggle('active')
+    showMenu()
+  }
+
+  burgerMobile.onclick = (event) => {
     menu.classList.toggle('active')
     showMenu()
   }

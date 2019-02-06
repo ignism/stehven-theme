@@ -1,0 +1,19 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  min-height: 50vw;
+}
+
+@media (min-width: 992px) {
+  .section {
+    max-height: 100vw;
+  }
+
+  .section.mobile {
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+  }
+}
+

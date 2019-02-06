@@ -1,0 +1,153 @@
+/* ---- ASK */
+
+.expander-content {
+  height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: height 400ms ease-out;
+}
+
+.expander-wrapper.active .expander-content {
+  height: calc(66.667vh - 12rem);
+}
+
+@media (min-width: 768px) {
+  .expander-wrapper.active .expander-content {
+    height: calc(66.667vh - 24rem);
+  }
+}
+
+.expander-wrapper.active .expander-trigger {
+  color: white;
+  background: #9854fc;
+}
+
+.expander-wrapper .plus {
+  transform: rotateY(0);
+  transition: transform 400ms ease-out;
+}
+
+.expander-wrapper .cross {
+  transform: rotateY(90deg);
+  transition: transform 400ms ease-out;
+}
+
+.expander-wrapper.active .plus {
+  transform: rotateY(90deg);
+}
+
+.expander-wrapper.active .cross {
+  transform: rotateY(0);  
+}
+
+.ask-option.active {
+  color: white;
+  background: #9854FC;
+}
+
+.step-option:nth-child(1),
+.step-option:nth-child(3) {
+  background: #46D5FF;
+  color: white;
+}
+
+.step-option:nth-child(2),
+.step-option:nth-child(4) {
+  background: #FD4635;
+  color: white;
+}
+
+.step-option.active {
+  background: white;
+  color: #FD4635;
+}
+
+/* ---- MEET */
+
+.portrait.big {
+  width: 100vw;
+  height: 100vw;
+}
+
+.portrait.small {
+  width: 100vw;
+  height: 100vw;
+}
+
+.portrait-row {
+  height: auto;
+}
+
+.small-portrait-row {
+  height: auto;
+}
+
+.portrait-overlay {
+  top: -100vw;
+  transition: top 200ms ease-out;
+}
+
+@media (max-width: 991px) {
+  .portrait h3 {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .portrait.big {
+    width: 50vw;
+    height: 50vw;
+  }
+  
+  .portrait.small {
+    width: 50vw;
+    height: 50vw;
+  }
+
+  
+  .portrait-row {
+    height: 50vw;
+  }
+  
+  .small-portrait-row {
+    height: 50vw;
+  }
+
+  .portrait-overlay {
+    top: -50vw;
+    transition: top 200ms ease-out;
+  }
+}
+
+@media (min-width: 992px) {
+  .portrait.big {
+    width: 50vw;
+    height: 50vw;
+  }
+  
+  .portrait.small {
+    width: 25vw;
+    height: 25vw;
+  }
+
+  
+  .portrait-row {
+    height: 50vw;
+  }
+  .portrait-overlay {
+    top: -50vw;
+    transition: top 200ms ease-out;
+  }
+  .small-portrait-row {
+    height: 25vw;
+  }
+  .small-portrait-row .portrait-overlay {
+    top: -25vw;
+  }
+  
+}
+
+.portrait:hover .portrait-overlay{
+  top: 0;
+}

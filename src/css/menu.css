@@ -1,0 +1,100 @@
+#menu {
+  top: -96px;
+  transition: top 200ms ease;
+}
+
+#submenu-mobile {
+  top: -100vh;
+  transition: top 400ms ease-out, opacity 400ms ease-out;
+}
+
+#submenu > li {
+  position: relative;
+  transition: top 200ms ease;
+  top: -96px;
+}
+
+#submenu > li:nth-child(1) {
+  transition-delay: 50ms;
+}
+#submenu > li:nth-child(2) {
+  transition-delay: 100ms;
+}
+#submenu > li:nth-child(3) {
+  transition-delay: 150ms;
+}
+#submenu > li:nth-child(4) {
+  transition-delay: 200ms;
+}
+
+#menu.active #submenu > li {
+  top: 0;
+  
+}
+
+#menu.active #submenu-mobile {
+  top: 0;
+  opacity: 1;
+}
+
+.burger {
+  cursor: pointer;
+}
+
+.burger > * {
+  transition: transform 200ms ease-out, opacity 200ms ease-out;
+  border-color: white;
+}
+
+.burger.invert > * {
+  border-color: black;
+}
+
+.burger.white.invert > * {
+  border-color: white !important;
+}
+
+#menu.active .burger :nth-child(1) {
+  transform: translate(0, 0.685rem) rotate(45deg);
+  transform-origin: 50%;
+}
+#menu.active .burger :nth-child(2) {
+  transform: translate(1rem, 0);
+  opacity: 0;
+  transform-origin: 50%;
+}
+#menu.active .burger :nth-child(3) {
+  transform: translate(0, -0.685rem) rotate(-45deg);
+  transform-origin: 50%;
+}
+
+@media (min-width: 992px) {
+  #menu.active .burger :nth-child(1) {
+    transform: translate(0, 0.8125rem) rotate(45deg);
+    transform-origin: 50%;
+  }
+  #menu.active .burger :nth-child(2) {
+    transform: translate(1rem, 0);
+    opacity: 0;
+    transform-origin: 50%;
+  }
+  #menu.active .burger :nth-child(3) {
+    transform: translate(0, -0.8125rem) rotate(-45deg);
+    transform-origin: 50%;
+  }
+}
+
+#progress-bar {
+  width: 3px;
+  height: 140px;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+
+#progress-bar .progress {
+  width: 3px;
+  height: 3px;
+  background: black;
+  transition: top 200ms ease-out;
+}

@@ -1,5 +1,11 @@
 import './css/styles.css'
+import './css/menu.css'
 import './css/matter.css'
+import './css/siema.css'
+import './css/section.css'
+import './css/text.css'
+import './css/expander.css'
+import './css/pages.css'
 
 import './js/sliders.js'
 import './js/menu.js'

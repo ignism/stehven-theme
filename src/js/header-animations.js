@@ -324,3 +324,24 @@ if (eventTriangle) {
 
 }
 
+const expanders = Array.from(document.getElementsByClassName('expander-wrapper'))
+
+if (expanders) {
+  expanders.forEach(wrapper => {
+    let trigger = wrapper.querySelector('.expander-trigger')
+    let content = wrapper.querySelector('.expander-content')
+
+    trigger.onclick = (event) => {
+      if (wrapper.classList.contains('active')) {
+        expanders.forEach(element => {
+          element.classList.remove('active')
+        })
+      } else {
+        expanders.forEach(element => {
+          element.classList.remove('active')
+        })
+        wrapper.classList.add('active')
+      }
+    }
+  })
+}

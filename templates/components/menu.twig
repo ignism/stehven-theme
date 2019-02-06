@@ -1,8 +1,8 @@
 {% if menu %}
 <div id="menu-wrapper" class="wrapper relative w-full">
-    <nav id="menu" class="w-full h-24 px-8 bg-black fixed z-50 flex items-center justify-between">
-        <div class="flex items-end">
-            <div class="h-12">
+    <nav id="menu" class="w-full h-16 lg:h-24 px-8 bg-black fixed z-50 flex items-center justify-between">
+        <div class="flex items-end z-50">
+            <div class="h-8 lg:h-12">
                 {% if locale == 'en_GB' %}
                 <a href="{{ site.url }}">
                     <img class="h-full max-h-full" src="{{ theme.link }}/assets/images/logo-stehven.svg" />
@@ -13,7 +13,7 @@
                 </a>
                 {% endif %}
             </div>
-            <div class="h-5 text-xl ml-8">
+            <div class="hidden lg:block h-5 text-xl ml-8">
                 {% for item in menu %}
                 {% if item.title == 'English' and locale != 'en_GB' %}
                 <a class="text-white no-underline" target="{{ item.target }}" href="{{ item.link }}">EN</a>
@@ -25,7 +25,8 @@
             </div>
 
         </div>
-        <div class="h-24 flex items-center">
+        {# desktop #}
+        <div class="hidden h-24 lg:flex items-center">
             <div class="h-24">
                 <ul id="submenu" class="list-reset overflow-y-hidden flex font-druk text-5xl leading-none uppercase mr-16">
                     {% if locale == 'en_GB' %}
@@ -58,12 +59,67 @@
                     {% endif %}
                 </ul>
             </div>
-            <div id="burger" class="flex fixed pin-t pin-r mr-12 mt-6 flex-col justify-around h-10 pl-8 my-1">
+            <div id="burger" class="burger flex fixed pin-t pin-r mr-12 mt-6 flex-col justify-around h-10 pl-8 my-1">
                 <div class="border-b-4 w-10"></div>
                 <div class="border-b-4 w-10"></div>
                 <div class="border-b-4 w-10"></div>
             </div>
         </div>
+        {# mobile #}
+        <div id="submenu-mobile" class="h-screen bg-black fixed z-40 pin block lg:hidden z-40">
+            <div class="absolute pin">
+              <div class="h-full flex flex-col font-druk text-5xl leading-none uppercase">
+                <div class="flex-grow text-center flex flex-col">
+                  {% if locale == 'en_GB' %}
+                  <div class="bg-white mt-16 flex-grow flex items-center justify-center">
+                    <a class="text-black no-underline" href="{{ site.url }}/en/en-ask">ask</a>
+                  </div>
+                  <div class="bg-black flex-grow flex items-center justify-center">
+                    <a class="text-white no-underline" href="{{ site.url }}/en/en-meet">meet</a>
+                  </div>
+                  <div class="bg-white flex-grow flex items-center justify-center">
+                    <a class="text-black no-underline" href="{{ site.url }}/en/en-portfolio">portfolio</a>
+                  </div>
+                  <div class="bg-black flex-grow flex items-center justify-center">
+                    <a class="text-white no-underline" href="{{ site.url }}/en/en-contact">contact</a>
+                  </div>
+                  {% else %}
+                  <div class="bg-white mt-16 flex-grow flex items-center justify-center">
+                    <a class="text-black no-underline" href="{{ site.url }}/nl-ask">ask</a>
+                  </div>
+                  <div class="bg-black flex-grow flex items-center justify-center">
+                    <a class="text-white no-underline" href="{{ site.url }}/nl-meet">meet</a>
+                  </div>
+                  <div class="bg-white flex-grow flex items-center justify-center">
+                    <a class="text-black no-underline" href="{{ site.url }}/nl-portfolio">portfolio</a>
+                  </div>
+                  <div class="bg-black flex-grow flex items-center justify-center">
+                    <a class="text-white no-underline" href="{{ site.url }}/nl-contact">contact</a>
+                  </div>
+                  {% endif %}
+                </div>
+                <div class="flex-no-grow flex flex-wrap">
+                  {% for item in menu %}
+                    {% if item.title == 'English' %}
+                      <div class="w-1/2 bg-white h-24 flex items-center justify-center">
+                        <a class="text-black no-underline" target="{{ item.target }}" href="{{ item.link }}">EN</a>
+                      </div>
+                    {% else %}
+                      <div class="w-1/2 bg-black h-24 flex items-center justify-center">
+                        <a class="text-white no-underline" target="{{ item.target }}" href="{{ item.link }}">NL</a>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+
+            </div>
+            </div>
+        <div id="burger-mobile" class="burger flex lg:hidden fixed z-50 pin-t pin-r mr-6 md:mr-8 mt-4 flex-col justify-around h-8 pl-8 my-1">
+                <div class="border-b-4 w-8"></div>
+                <div class="border-b-4 w-8"></div>
+                <div class="border-b-4 w-8"></div>
+            </div>
     </nav>
 </div>
 {% endif %}

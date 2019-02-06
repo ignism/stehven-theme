@@ -1,0 +1,28 @@
+.siema-slide {
+  height: 100vh;
+  min-height: 50vw;
+}
+
+.h-1\/2 .siema-slide {
+  height: 50vh;
+  min-height: 25vw;
+}
+
+.h-1\/4 .siema-slide {
+  height: 25vh;
+  min-height: 12.5vw;
+}
+
+@media (min-width: 992px) {
+  .siema-slide {
+    max-height: 100vw;
+  }
+  
+  .h-1\/2 .siema-slide {
+    max-height: 50vw;
+  }
+  
+  .h-1\/4 .siema-slide {
+    max-height: 25vw;
+  }
+}
