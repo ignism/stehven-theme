@@ -1,12 +1,19 @@
 .section {
   position: relative;
   overflow: hidden;
-  height: 100vh;
+  height: 90vh;
   min-height: 50vw;
+}
+
+@media (min-width: 768px) {
+  .section {
+    height: 95vh;
+  }
 }
 
 @media (min-width: 992px) {
   .section {
+    height: 100vh;
     max-height: 100vw;
   }
 

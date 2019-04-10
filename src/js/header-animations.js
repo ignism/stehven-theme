@@ -4,7 +4,8 @@ import {
   spring,
   styler,
   easing,
-  tween
+  tween,
+  timeline
 } from "popmotion"
 import {
   buildStyleProperty
@@ -207,14 +208,18 @@ if (meetRed && meetGreen) {
   let fromRightBottomGreen = styler(meetGreen.querySelector('.from-right-bottom'))
 
   let slideFromLeft = tween({
-    from: { x: '-100%' },
+    from: {
+      x: '-100%'
+    },
     to: 0,
     duration: 1000,
     ease: easing.easeOut
   })
 
   let slideFromRight = tween({
-    from: { x: '100%' },
+    from: {
+      x: '100%'
+    },
     to: 0,
     duration: 1000,
     ease: easing.easeOut
@@ -222,15 +227,23 @@ if (meetRed && meetGreen) {
 
   recursive();
 
-  setInterval(() => {
-    recursive()
-  }, 2000)
+  // setInterval(() => {
+  //   recursive()
+  // }, 2000)
 
   function recursive() {
-    fromLeftTopGreen.set({ x: '-100%' })
-    fromLeftBottomGreen.set({ x: '-100%' })
-    fromRightTopGreen.set({ x: '100%' })
-    fromRightBottomGreen.set({ x: '100%' })
+    fromLeftTopGreen.set({
+      x: '-100%'
+    })
+    fromLeftBottomGreen.set({
+      x: '-100%'
+    })
+    fromRightTopGreen.set({
+      x: '100%'
+    })
+    fromRightBottomGreen.set({
+      x: '100%'
+    })
 
     slideFromLeft.start({
       update: (v) => {
@@ -244,8 +257,12 @@ if (meetRed && meetGreen) {
             fromLeftBottomGreen.set(v)
           },
           complete: () => {
-            fromLeftTopRed.set({ x: '-100%' })
-            fromLeftBottomRed.set({ x: '-100%' })
+            fromLeftTopRed.set({
+              x: '-100%'
+            })
+            fromLeftBottomRed.set({
+              x: '-100%'
+            })
           }
         })
       }
@@ -263,8 +280,13 @@ if (meetRed && meetGreen) {
             fromRightBottomGreen.set(v)
           },
           complete: () => {
-            fromRightTopRed.set({ x: '100%' })
-            fromRightBottomRed.set({ x: '100%' })
+            fromRightTopRed.set({
+              x: '100%'
+            })
+            fromRightBottomRed.set({
+              x: '100%'
+            })
+            recursive()
           }
         })
       }
@@ -277,36 +299,49 @@ const eventTriangle = document.getElementById('event-triangle')
 if (eventTriangle) {
   let fromTopRed = styler(eventTriangle.querySelector('.from-top-red'))
   let fromTopBlue = styler(eventTriangle.querySelector('.from-top-blue'))
-  
+
 
   console.log(eventTriangle.querySelector('.from-top-red'))
   console.log(eventTriangle.querySelector('.from-top-blue'))
 
   let slideIn = tween({
-    from: {y: '-100%'},
-    to: {y: '0%'},
+    from: {
+      y: '-100%'
+    },
+    to: {
+      y: '0%'
+    },
     duration: 1000,
     ease: easing.easeOut
   })
 
   let slideOut = tween({
-    from: {y: '0%'},
-    to: {y: '100%'},
+    from: {
+      y: '0%'
+    },
+    to: {
+      y: '100%'
+    },
     duration: 1000,
     ease: easing.easeOut
   })
 
   let simpleSlider = () => {
-    fromTopBlue.set({y: '-100%'})
+    fromTopBlue.set({
+      y: '-100%'
+    })
     eventTriangle.classList.remove('bg-blue')
     eventTriangle.classList.add('bg-red')
 
     slideIn.start(fromTopBlue.set)
     slideOut.start({
       update: (v) => {
-        fromTopRed.set(v)},
+        fromTopRed.set(v)
+      },
       complete: () => {
-        fromTopRed.set({y: '-100%'})
+        fromTopRed.set({
+          y: '-100%'
+        })
         eventTriangle.classList.remove('bg-red')
         eventTriangle.classList.add('bg-blue')
         slideIn.start(fromTopRed.set)
@@ -327,20 +362,25 @@ if (eventTriangle) {
 const expanders = Array.from(document.getElementsByClassName('expander-wrapper'))
 
 if (expanders) {
+  let header = document.getElementById('mobile-just-ask')
+
   expanders.forEach(wrapper => {
     let trigger = wrapper.querySelector('.expander-trigger')
     let content = wrapper.querySelector('.expander-content')
 
     trigger.onclick = (event) => {
+      console.log(header)
       if (wrapper.classList.contains('active')) {
         expanders.forEach(element => {
           element.classList.remove('active')
         })
+        header.style.height = '33.3333%'
       } else {
         expanders.forEach(element => {
           element.classList.remove('active')
         })
         wrapper.classList.add('active')
+        header.style.height = '0%'
       }
     }
   })

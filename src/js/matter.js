@@ -5,6 +5,7 @@ import ScrollMagic from 'scrollmagic'
 const animationElement = document.getElementById("matter-animation")
 
 let firstTime = true;
+let isResized = true;
 
 if (animationElement) {
   let controller = new ScrollMagic.Controller()
@@ -278,6 +279,7 @@ if (animationElement) {
       resetChar(char.body)
     })
 
+    isResized = true;
     resizeRenderer()
   }
 
@@ -309,6 +311,7 @@ if (animationElement) {
 
 
   function resetBoxNot() {
+    console.log('resetting not...')
     let worldVector = Matter.Vector.create(world.width, world.height)
     let prevVector = Matter.Vector.create(world.prevWidth, world.prevHeight)
     let scale =
@@ -400,29 +403,38 @@ if (animationElement) {
 
   // events
   window.addEventListener('resize', _.debounce(() => {
-    console.log('matter resize')
     resizeWorld()
   }, 200))
+
+  window.addEventListener('scroll', _.debounce(() => {
+    if (animationElement.classList.contains('active')) {
+      if (firstTime) {
+        addChars()
+        firstTime = false;
+      }
+    }
+  }, 10))
+
 
   let isHussling = false
 
   function reset() {
-    if (firstTime) {
-      addChars()
-      firstTime = false;
-    } else {
-      if (chars) {
-        if (isHussling == false) {
-          isHussling = true
-          chars.forEach(char => {
-            hussle(char.body)
-          })
-          setTimeout(() => {
-            isHussling = false
-          }, 1000)
-        }
-      }
-    }
+    // if (firstTime) {
+    //   addChars()
+    //   firstTime = false;
+    // } else {
+    //   if (chars) {
+    //     if (isHussling == false) {
+    //       isHussling = true
+    //       chars.forEach(char => {
+    //         hussle(char.body)
+    //       })
+    //       setTimeout(() => {
+    //         isHussling = false
+    //       }, 1000)
+    //     }
+    //   }
+    // }
   }
 
   const update = () => {
@@ -435,8 +447,12 @@ if (animationElement) {
     for (let i = 0; i < chars.length; i++) {
       renderElementFromBody(divs[i], chars[i].body)
     }
-    renderElementFromBody(divs[5], boxNot)
-    renderElementFromBody(divs[6], boxJust)
+
+    if(isResized) {
+      renderElementFromBody(divs[5], boxNot)
+      renderElementFromBody(divs[6], boxJust)
+      isResized = false;
+    }
     window.requestAnimationFrame(update)
   }
 

@@ -6,13 +6,11 @@ $context = Timber::get_context();
 $args = array(
     'post_type' => 'event', // Get post type project
     'posts_per_page' => -1, // Get all posts
-    'orderby' => array(
-        'date' => 'DESC' // Order by post date
-));
+);
 $events = Timber::get_posts($args);
 
 if (sizeof($events) > 0) {
-    $context['event'] = $events[0];
+    $context['event_posts'] = $events;
 }
 
 $args = array(

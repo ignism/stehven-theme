@@ -1,98 +1,98 @@
 {% extends 'base.twig' %}
-{% set prefix = 'ask_' ~ locale|getLang ~ '_' %}
+{% set prefix = 'ask_' ~ locale | getLang ~ '_' %}
 {% block header %}
-<header class="section flex flex-col">
-  <div class="w-full pt-16 lg:pt-24 h-1/3 lg:h-1/2 bg-red">
-    <div class="h-full relative">
-      <div class="mx-6 md:mx-8 lg:mx-12 my-12 h-auto pin absolute">
-        <img class="h-full max-w-full" src="{{ theme.link }}/assets/images/just-ask-us-for.svg" alt="">
-      </div>
-    </div>
-  </div>
+    <header class="section flex flex-col">
+        <div class="w-full pt-16 lg:pt-24 h-1/3 lg:h-1/2 bg-red hidden md:block">
+            <div class="h-full relative">
+                <div class="mx-6 md:mx-8 lg:mx-12 my-6 md:my-12 h-auto pin absolute">
+                    <img class="h-full max-w-full" src="{{ theme.link }}/assets/images/just-ask-us-for.svg" alt="">
+                </div>
+            </div>
+        </div>
 
-  <div class="w-full h-1/2 flex-0 hidden lg:flex bg-purple">
-    <div class="w-1/2 flex flex-wrap flex-col">
-      <div class="ask-option active bg-white text-red w-full h-1/3 relative">
-        <div class="mx-12 pin absolute flex flex-col justify-center">
-          <h3>Knowledge</h3>
-        </div>
-      </div>
-      <div class="ask-option bg-red text-white w-full h-1/3 relative">
-        <div class="mx-12 pin absolute flex flex-col justify-center">
-          <h3>Money</h3>
-        </div>
-      </div>
-      <div class="ask-option bg-white text-purple w-full h-1/3 relative">
-        <div class="mx-12 pin absolute flex flex-col justify-center">
-          <h3>Network</h3>
-        </div>
-      </div>
-    </div>
-    <div class="w-1/2">
-      {% set slideKnowledge %}
-      <div class="w-full h-full relative">
-        <div class="pin absolute mx-24 my-12 flex flex-col">
-          <div class="flex-1">
-            <p class="text-3xl font-medium mb-4">
-              {{ page.meta(prefix ~ 'knowledge_title') }}
-            </p>
-            <p class="text-2xl">
-              {{ page.meta(prefix ~ 'knowledge_description') }}
-            </p>
-          </div>
-          <div class="flex-0">
-            <p class="text-2xl font-medium">
-              For more information
-              <a class="text-red" href="{{ page.meta(prefix ~ 'mail') }}">
-                {{ page.meta(prefix ~ 'mail') }}</a>
-            </p>
-          </div>
-        </div>
-      </div>
-      {% endset %}
-      {% set slideMoney %}
-      <div class="w-full h-full relative">
-        <div class="pin absolute mx-24 my-12 flex flex-col">
-          <div class="flex-1">
-            <p class="text-3xl font-medium mb-4">
-              {{ page.meta(prefix ~ 'money_title') }}
-            </p>
-            <p class="text-2xl">
-              {{ page.meta(prefix ~ 'money_description') }}
-            </p>
-          </div>
-          <div class="flex-0">
-            <p class="text-2xl font-medium">
-              For more information
-              <a class="text-red" href="{{ page.meta(prefix ~ 'mail') }}">
-                {{ page.meta(prefix ~ 'mail') }}</a>
-            </p>
-          </div>
-        </div>
-      </div>
-      {% endset %}
-      {% set slideNetwork %}
-      <div class="w-full h-full relative">
-        <div class="pin absolute mx-24 my-12 flex flex-col">
-          <div class="flex-1">
-            <p class="text-3xl font-medium mb-4">
-              {{ page.meta(prefix ~ 'network_title') }}
-            </p>
-            <p class="text-2xl">
-              {{ page.meta(prefix ~ 'network_description') }}
-            </p>
-          </div>
-          <div class="flex-0">
-            <p class="text-2xl font-medium">
-              For more information
-              <a class="text-red" href="{{ page.meta(prefix ~ 'mail') }}">
-                {{ page.meta(prefix ~ 'mail') }}</a>
-            </p>
-          </div>
-        </div>
-      </div>
-      {% endset %}
-      {% include "components/siema-slider.twig" with {
+        <div class="w-full h-1/2 flex-0 hidden lg:flex bg-purple">
+            <div class="w-1/2 flex flex-wrap flex-col">
+                <div class="ask-option active bg-white text-red w-full h-1/3 relative">
+                    <div class="mx-12 pin absolute flex flex-col justify-center">
+                        <h3>Knowledge</h3>
+                    </div>
+                </div>
+                <div class="ask-option bg-red text-white w-full h-1/3 relative">
+                    <div class="mx-12 pin absolute flex flex-col justify-center">
+                        <h3>Money</h3>
+                    </div>
+                </div>
+                <div class="ask-option bg-white text-purple w-full h-1/3 relative">
+                    <div class="mx-12 pin absolute flex flex-col justify-center">
+                        <h3>Network</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/2">
+                {% set slideKnowledge %}
+                <div class="w-full h-full relative">
+                    <div class="pin absolute mx-24 my-12 flex flex-col">
+                        <div class="flex-1">
+                            <p class="text-3xl font-medium mb-4">
+                                {{ page.meta(prefix ~ 'knowledge_title') }}
+                            </p>
+                            <p class="text-2xl">
+                                {{ page.meta(prefix ~ 'knowledge_description') }}
+                            </p>
+                        </div>
+                        <div class="flex-0">
+                            <p class="text-2xl font-medium">
+                                For more information
+                                <a class="text-red" href="{{ page.meta(prefix ~ 'footer_mail') }}">
+                                    {{ page.meta(prefix ~ 'footer_mail') }}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endset %}
+                {% set slideMoney %}
+                <div class="w-full h-full relative">
+                    <div class="pin absolute mx-24 my-12 flex flex-col">
+                        <div class="flex-1">
+                            <p class="text-3xl font-medium mb-4">
+                                {{ page.meta(prefix ~ 'money_title') }}
+                            </p>
+                            <p class="text-2xl">
+                                {{ page.meta(prefix ~ 'money_description') }}
+                            </p>
+                        </div>
+                        <div class="flex-0">
+                            <p class="text-2xl font-medium">
+                                For more information
+                                <a class="text-red" href="{{ page.meta(prefix ~ 'footer_mail') }}">
+                                    {{ page.meta(prefix ~ 'footer_mail') }}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endset %}
+                {% set slideNetwork %}
+                <div class="w-full h-full relative">
+                    <div class="pin absolute mx-24 my-12 flex flex-col">
+                        <div class="flex-1">
+                            <p class="text-3xl font-medium mb-4">
+                                {{ page.meta(prefix ~ 'network_title') }}
+                            </p>
+                            <p class="text-2xl">
+                                {{ page.meta(prefix ~ 'network_description') }}
+                            </p>
+                        </div>
+                        <div class="flex-0">
+                            <p class="text-2xl font-medium">
+                                For more information
+                                <a class="text-red" href="{{ page.meta(prefix ~ 'footer_mail') }}">
+                                    {{ page.meta(prefix ~ 'footer_mail') }}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endset %}
+                {% include "components/siema-slider.twig" with {
       options: {
       perPage: 1,
       loop: 1,
@@ -103,179 +103,197 @@
       },
       slides: [ slideKnowledge, slideMoney, slideNetwork ]
       } %}
-    </div>
-  </div>
-
-  <div class="w-full h-1/2 flex-1 flex-col lg:hidden bg-purple">
-    <div class="expander-wrapper w-full active">
-      <div class="expander-trigger bg-white text-purple relative h-16 px-6 md:h-32 md:px-8 flex items-center">
-        <h3>knowledge</h3>
-        <div class="expander-icon z-40 absolute w-16 h-16 pin-r pin-t">
-          <div class="plus absolute"><img src="{{ theme.link }}/assets/images/icon-plus.svg" alt=""></div>
-          <div class="cross absolute"><img src="{{ theme.link }}/assets/images/icon-cross.svg" alt=""></div>
+            </div>
         </div>
-      </div>
-      <div class="expander-content bg-purple text-white p-6 mr-16">
-        <p class="text-xl font-medium mb-4">
-          {{ page.meta(prefix ~ 'knowledge_title') }}
-        </p>
-        <p class="text-base">
-          {{ page.meta(prefix ~ 'knowledge_description') }}
-        </p>
-      </div>
-    </div>
 
-    <div class="expander-wrapper w-full">
-      <div class="expander-trigger bg-red relative h-16 px-6 md:h-32 md:px-8 flex items-center">
-        <h3>money</h3>
-        <div class="expander-icon z-40 absolute w-16 h-16 pin-r pin-t">
-          <div class="plus absolute"><img src="{{ theme.link }}/assets/images/icon-plus.svg" alt=""></div>
-          <div class="cross absolute"><img src="{{ theme.link }}/assets/images/icon-cross.svg" alt=""></div>
+        <div id="mobile-just-ask" class="w-full pt-16 lg:pt-24 h-1/3 lg:h-1/2 bg-red block md:hidden">
+            <div class="h-full relative">
+                <div class="mx-6 md:mx-8 lg:mx-12 my-6 md:my-12 h-auto pin absolute">
+                    <img class="h-full max-w-full" src="{{ theme.link }}/assets/images/just-ask-us-for.svg" alt="">
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="expander-content bg-purple text-white p-6 mr-16">
-        <p class="text-xl font-medium mb-4">
-          {{ page.meta(prefix ~ 'money_title') }}
-        </p>
-        <p class="text-base">
-          {{ page.meta(prefix ~ 'money_description') }}
-        </p>
-      </div>
-    </div>
 
-    <div class="expander-wrapper w-full">
-      <div class="expander-trigger bg-white text-red relative h-16 px-6 md:h-32 md:px-8 flex items-center">
-        <h3>network</h3>
-        <div class="expander-icon z-40 absolute w-16 h-16 pin-r pin-t">
-          <div class="plus absolute"><img src="{{ theme.link }}/assets/images/icon-plus.svg" alt=""></div>
-          <div class="cross absolute"><img src="{{ theme.link }}/assets/images/icon-cross.svg" alt=""></div>
+        <div class="w-full h-1/2 flex-1 flex-col lg:hidden bg-purple">
+            <div class="expander-wrapper w-full">
+                <div class="expander-trigger bg-white text-purple relative h-16 px-6 md:h-32 md:px-8 flex items-center">
+                    <h3>knowledge</h3>
+                    <div class="expander-icon z-40 absolute w-16 h-16 pin-r pin-t">
+                        <div class="plus absolute"><img src="{{ theme.link }}/assets/images/icon-plus.svg" alt=""></div>
+                        <div class="cross absolute"><img src="{{ theme.link }}/assets/images/icon-cross.svg" alt=""></div>
+                    </div>
+                </div>
+                <div class="expander-content bg-purple text-white p-6 mr-16">
+                    <p class="text-xl font-medium mb-4 md:text-2xl">
+                        {{ page.meta(prefix ~ 'knowledge_title') }}
+                    </p>
+                    <p class="text-base md:text-xl">
+                        {{ page.meta(prefix ~ 'knowledge_description') }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="expander-wrapper w-full">
+                <div class="expander-trigger bg-red relative h-16 px-6 md:h-32 md:px-8 flex items-center">
+                    <h3>money</h3>
+                    <div class="expander-icon z-40 absolute w-16 h-16 pin-r pin-t">
+                        <div class="plus absolute"><img src="{{ theme.link }}/assets/images/icon-plus.svg" alt=""></div>
+                        <div class="cross absolute"><img src="{{ theme.link }}/assets/images/icon-cross.svg" alt=""></div>
+                    </div>
+                </div>
+                <div class="expander-content bg-purple text-white p-6 mr-16">
+                    <p class="text-xl font-medium mb-4 md:text-2xl">
+                        {{ page.meta(prefix ~ 'money_title') }}
+                    </p>
+                    <p class="text-base md:text-xl">
+                        {{ page.meta(prefix ~ 'money_description') }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="expander-wrapper w-full">
+                <div class="expander-trigger bg-white text-red relative h-16 px-6 md:h-32 md:px-8 flex items-center">
+                    <h3>network</h3>
+                    <div class="expander-icon z-40 absolute w-16 h-16 pin-r pin-t">
+                        <div class="plus absolute"><img src="{{ theme.link }}/assets/images/icon-plus.svg" alt=""></div>
+                        <div class="cross absolute"><img src="{{ theme.link }}/assets/images/icon-cross.svg" alt=""></div>
+                    </div>
+                </div>
+                <div class="expander-content bg-purple text-white p-6 mr-16">
+                    <p class="text-xl font-medium mb-4 md:text-2xl">
+                        {{ page.meta(prefix ~ 'network_title') }}
+                    </p>
+                    <p class="text-base md:text-xl">
+                        {{ page.meta(prefix ~ 'network_description') }}
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="expander-content bg-purple text-white p-6 mr-16">
-        <p class="text-xl font-medium mb-4">
-          {{ page.meta(prefix ~ 'network_title') }}
-        </p>
-        <p class="text-base">
-          {{ page.meta(prefix ~ 'network_description') }}
-        </p>
-      </div>
-    </div>
-  </div>
 
-  <div class="zenscroll absolute w-16 h-16 pin-b pin-r z-30 cursor-pointer" data-direction="down">
-    <img src="{{ theme.link }}/assets/images/double-arrow-down.svg" alt="">
-  </div>
-</header>
+        <div class="scrollify absolute w-16 h-16 pin-b pin-r z-30 cursor-pointer" data-direction="down">
+            <img src="{{ theme.link }}/assets/images/double-arrow-down.svg" alt="">
+        </div>
+    </header>
 {% endblock %}
 {# #}
 {% block content %}
-<section class="section flex flex-wrap" id="matter-animation">
-  <div class="w-full h-screen lg:w-1/2 h-full relative">
-    <div class="absolute pin z-50" id="debug"></div>
-    <div class="bg-white w-full h-full" id="frame">
-      <div class="matter-static opacity-100" id="boxNot">
-        <img src="{{ theme.link }}/assets/images/not.svg" style="max-width: none; width: 100%; height: 100%;"></div>
-      <div class="matter-static opacity-100" id="boxJust">
-        <img src="{{ theme.link }}/assets/images/just.svg" style="max-width: none; width: 100%; height: 100%;"></div>
-      <div class="matter-body" id="charB">
-        <img src="{{ theme.link }}/assets/images/char-b.svg" style="max-width: none; width: 100%; height: 100%;"></div>
-      <div class="matter-body" id="charE1">
-        <img src="{{ theme.link }}/assets/images/char-e.svg" style="max-width: none; width: 100%; height: 100%;"></div>
-      <div class="matter-body" id="charE2">
-        <img src="{{ theme.link }}/assets/images/char-e.svg" style="max-width: none; width: 100%; height: 100%;"></div>
-      <div class="matter-body" id="charR">
-        <img src="{{ theme.link }}/assets/images/char-r.svg" style="max-width: none; width: 100%; height: 100%;"></div>
-      <div class="matter-body" id="charS">
-        <img src="{{ theme.link }}/assets/images/char-s.svg" style="max-width: none; width: 100%; height: 100%;"></div>
-    </div>
-  </div>
-  <div class="w-full hidden lg:block lg:w-1/2 relative">
-    <div class="absolute w-full h-full bg-green text-red">
-      {% include "components/triangle-bottom-svg.twig" %}
-    </div>
-    <div class="absolute px-12 py-12 w-full h-full text-white">
-      <p class="w-3/4 text-2xl">
-        {{ page.meta(prefix ~ 'hint')}}
-      </p>
-    </div>
-  </div>
-</section>
+    <section class="section bg-white" id="matter-animation">
 
-<section class="section mobile">
-  <div class="w-full h-screen lg:hidden relative">
-    <div class="absolute w-full h-full bg-green text-red">
-      {% include "components/triangle-bottom-svg.twig" %}
-    </div>
-    <div class="absolute pin mt-16 mr-16 md:mr-32 px-6 md:px-8 py-12 text-white">
-      <p class="text-2xl md:text-3xl">
-        {{ page.meta(prefix ~ 'hint')}}
-      </p>
-    </div>
-  </div>
-</section>
+        <div class="h-full bg-white flex flex-wrap">
+            <div class="w-full h-full lg:w-1/2 h-full relative">
+                <div class="absolute pin z-0" id="debug"></div>
+                <div class="bg-white w-full h-full" id="frame">
+                    <div class="matter-static opacity-100" id="boxNot">
+                        <img src="{{ theme.link }}/assets/images/not.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+                    <div class="matter-static opacity-100" id="boxJust">
+                        <img src="{{ theme.link }}/assets/images/just.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+                    <div class="matter-body" id="charB">
+                        <img src="{{ theme.link }}/assets/images/char-b.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+                    <div class="matter-body" id="charE1">
+                        <img src="{{ theme.link }}/assets/images/char-e.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+                    <div class="matter-body" id="charE2">
+                        <img src="{{ theme.link }}/assets/images/char-e.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+                    <div class="matter-body" id="charR">
+                        <img src="{{ theme.link }}/assets/images/char-r.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+                    <div class="matter-body" id="charS">
+                        <img src="{{ theme.link }}/assets/images/char-s.svg" style="max-width: none; width: 100%; height: 100%;"></div>
+                </div>
+            </div>
+            <div class="w-full hidden lg:block lg:w-1/2 relative">
+                <div class="absolute w-full h-full bg-green text-red">
+                    {% include "components/triangle-bottom-svg.twig" %}
+                </div>
+                <div class="absolute px-12 py-12 w-full h-full text-white">
+                    <p class="w-3/4 text-2xl lg:text-3xl">
+                        {{ page.meta(prefix ~ 'hint')}}
+                    </p>
+                </div>
+            </div>
+        </div>
 
-<section class="section">
-  <div class="hidden lg:flex flex-wrap">
-    <div class="w-1/2 flex flex-col">
-      <div class="px-12 w-full flex flex-col justify-center h-1/2 bg-red">
-        <h2>
-          <span class="text-blue">steps</span>
-          <br>
-          to apply
-        </h2>
-      </div>
-      <div class="w-full h-1/4 bg-blue flex flex-wrap">
-        <div class="step-option active w-1/4 flex flex-col justify-center content-center">
-          <h2 class="mb-0 text-center">1</h2>
+        {# <div class="h-full mobile bg-green">
+            <div class="w-full h-screen lg:hidden relative">
+                <div class="absolute pin mt-16 mr-16 md:mr-32 px-6 md:px-8 py-12 text-white">
+                    <p class="text-2xl md:text-3xl">
+                        {{ page.meta(prefix ~ 'hint')}}
+                    </p>
+                </div>
+            </div>
+        </div> #}
+    </section>
+
+    <div class="section h-full mobile bg-green lg:h-0">
+    <div class="w-full h-screen relative">
+        <div class="absolute pin mt-16 mr-16 md:mr-32 px-6 md:px-8 py-12 text-white">
+        <p class="text-2xl md:text-3xl">
+            {{ page.meta(prefix ~ 'hint')}}
+        </p>
         </div>
-        <div class="step-option w-1/4 flex flex-col justify-center content-center">
-          <h2 class="mb-0 text-center">2</h2>
-        </div>
-        <div class="step-option w-1/4 flex flex-col justify-center content-center">
-          <h2 class="mb-0 text-center">3</h2>
-        </div>
-        <div class="step-option w-1/4 flex flex-col justify-center content-center">
-          <h2 class="mb-0 text-center">4</h2>
-        </div>
-      </div>
-      <div class="w-full h-1/4 bg-white">
-        {% set slide1 %}
-        <div class="w-full h-full relative">
-          <div class="pin absolute mx-12 my-6 flex flex-col justify-center">
-            <p class="text-2xl text-red w-3/4">
-              {{ page.meta(prefix ~ 'step_1') }}
-            </p>
-          </div>
-        </div>
-        {% endset %}
-        {% set slide2 %}
-        <div class="w-full h-full relative">
-          <div class="pin absolute mx-12 my-6 flex flex-col justify-center">
-            <p class="text-2xl text-red w-3/4">
-              {{ page.meta(prefix ~ 'step_2') }}
-            </p>
-          </div>
-        </div>
-        {% endset %}
-        {% set slide3 %}
-        <div class="w-full h-full relative">
-          <div class="pin absolute mx-12 my-6 flex flex-col justify-center">
-            <p class="text-2xl text-red w-3/4">
-              {{ page.meta(prefix ~ 'step_3') }}
-            </p>
-          </div>
-        </div>
-        {% endset %}
-        {% set slide4 %}
-        <div class="w-full h-full relative">
-          <div class="pin absolute mx-12 my-6 flex flex-col justify-center">
-            <p class="text-2xl text-red w-3/4">
-              {{ page.meta(prefix ~ 'step_4') }}
-            </p>
-          </div>
-        </div>
-        {% endset %}
-        {% include "components/siema-slider.twig" with {
+    </div>
+    </div>
+
+    <section class="section">
+        <div class="h-full hidden lg:flex flex-wrap">
+            <div class="w-1/2 flex flex-col">
+                <div class="px-12 w-full flex flex-col justify-center h-1/2 bg-red">
+                    <h2>
+                        <span class="text-blue">steps</span>
+                        <br>
+                        to apply
+                    </h2>
+                </div>
+                <div class="w-full h-1/4 bg-blue flex flex-wrap">
+                    <div class="step-option active w-1/4 flex flex-col justify-center content-center">
+                        <h2 class="mb-0 text-center">1</h2>
+                    </div>
+                    <div class="step-option w-1/4 flex flex-col justify-center content-center">
+                        <h2 class="mb-0 text-center">2</h2>
+                    </div>
+                    <div class="step-option w-1/4 flex flex-col justify-center content-center">
+                        <h2 class="mb-0 text-center">3</h2>
+                    </div>
+                    <div class="step-option w-1/4 flex flex-col justify-center content-center">
+                        <h2 class="mb-0 text-center">4</h2>
+                    </div>
+                </div>
+                <div class="w-full h-1/4 bg-white">
+                    {% set slide1 %}
+                    <div class="w-full h-full relative">
+                        <div class="pin absolute mx-12 my-6 flex flex-col justify-center">
+                            <p class="text-2xl text-red w-3/4">
+                                {{ page.meta(prefix ~ 'step_1') }}
+                            </p>
+                        </div>
+                    </div>
+                    {% endset %}
+                    {% set slide2 %}
+                    <div class="w-full h-full relative">
+                        <div class="pin absolute mx-12 my-6 flex flex-col justify-center">
+                            <p class="text-2xl text-red w-3/4">
+                                {{ page.meta(prefix ~ 'step_2') }}
+                            </p>
+                        </div>
+                    </div>
+                    {% endset %}
+                    {% set slide3 %}
+                    <div class="w-full h-full relative">
+                        <div class="pin absolute mx-12 my-6 flex flex-col justify-center">
+                            <p class="text-2xl text-red w-3/4">
+                                {{ page.meta(prefix ~ 'step_3') }}
+                            </p>
+                        </div>
+                    </div>
+                    {% endset %}
+                    {% set slide4 %}
+                    <div class="w-full h-full relative">
+                        <div class="pin absolute mx-12 my-6 flex flex-col justify-center">
+                            <p class="text-2xl text-red w-3/4">
+                                {{ page.meta(prefix ~ 'step_4') }}
+                            </p>
+                        </div>
+                    </div>
+                    {% endset %}
+                    {% include "components/siema-slider.twig" with {
         options: {
         perPage: 1,
         loop: 0,
@@ -285,57 +303,57 @@
         },
         slides: [ slide1, slide2, slide3, slide4 ]
         } %}
-      </div>
-    </div>
-    <div class="w-1/2 p-32 bg-blue">
-      <div class="w-full h-full">
-        <a target="_blank" href="{{ page.meta(prefix ~ 'application_url') }}">
-          <img id="submit-button" class="h-full max-w-full" src="{{ theme.link }}/assets/images/submit-button.svg" alt=""></a>
-      </div>
-    </div>
+                </div>
+            </div>
+            <div class="w-1/2 p-32 bg-blue">
+                <div class="w-full h-full">
+                    <a target="_blank" href="{{ page.meta(prefix ~ 'application_url') }}">
+                        <img id="submit-button" class="h-full max-w-full" src="{{ theme.link }}/assets/images/submit-button.svg" alt=""></a>
+                </div>
+            </div>
 
-  </div>
+        </div>
 
-  <div class="w-full h-full flex flex-col lg:hidden">
-    <div class="w-full h-1/3 bg-red pt-16">
-      <h2 class="m-0 px-6 md:px-8">
-        <span class="text-blue">steps</span>
-        <br>
-        to apply
-      </h2>
-    </div>
-    <div class="w-full flex-grow bg-white flex flex-col">
-      <div class="relative w-full flex-grow bg-white text-red px-6 md:px-8 flex items-center">
-        <h3 class="w-12 p-0 font-druk absolute pin-l ml-6 md:ml-8 my-auto">1</h3>
-        <p class="ml-12 md:mx-24 text-base md:text-2xl">
-          {{ page.meta(prefix ~ 'step_1') }}
-        </p>
-      </div>
-      <div class="relative w-full flex-grow bg-red text-white px-6 md:px-8 flex items-center">
-        <h3 class="w-12 m-0 p-0 font-druk absolute pin-l ml-6 md:ml-8 my-auto">2</h3>
-        <p class="ml-12 md:mx-24 text-base md:text-2xl">
-          {{ page.meta(prefix ~ 'step_2') }}
-        </p>
-      </div>
-      <div class="relative w-full flex-grow bg-blue text-white px-6 md:px-8 flex items-center">
-        <h3 class="w-12 m-0 p-0 font-druk absolute pin-l ml-6 md:ml-8 my-auto">3</h3>
-        <p class="ml-12 md:mx-24 text-base md:text-2xl">
-          {{ page.meta(prefix ~ 'step_3') }}
-        </p>
-      </div>
-      <div class="relative w-full flex-grow bg-red text-white px-6 md:px-8 flex items-center">
-        <h3 class="w-12 m-0 p-0 font-druk absolute pin-l ml-6 md:ml-8 my-auto">4</h3>
-        <p class="ml-12 md:mx-24 text-base md:text-2xl">
-          {{ page.meta(prefix ~ 'step_4') }}
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="w-full h-full flex flex-col lg:hidden">
+            <div class="w-full h-1/3 bg-red py-8">
+                <h2 class="m-0 px-6 md:px-8">
+                    <span class="text-blue">steps</span>
+                    <br>
+                    to apply
+                </h2>
+            </div>
+            <div class="w-full flex-grow bg-white flex flex-col">
+                <div class="relative w-full flex-grow bg-white text-red px-6 md:px-8 flex items-center">
+                    <h3 class="w-12 p-0 font-druk absolute pin-l ml-6 md:ml-8 my-auto">1</h3>
+                    <p class="ml-12 md:mx-24 text-base md:text-2xl">
+                        {{ page.meta(prefix ~ 'step_1') }}
+                    </p>
+                </div>
+                <div class="relative w-full flex-grow bg-red text-white px-6 md:px-8 flex items-center">
+                    <h3 class="w-12 m-0 p-0 font-druk absolute pin-l ml-6 md:ml-8 my-auto">2</h3>
+                    <p class="ml-12 md:mx-24 text-base md:text-2xl">
+                        {{ page.meta(prefix ~ 'step_2') }}
+                    </p>
+                </div>
+                <div class="relative w-full flex-grow bg-blue text-white px-6 md:px-8 flex items-center">
+                    <h3 class="w-12 m-0 p-0 font-druk absolute pin-l ml-6 md:ml-8 my-auto">3</h3>
+                    <p class="ml-12 md:mx-24 text-base md:text-2xl">
+                        {{ page.meta(prefix ~ 'step_3') }}
+                    </p>
+                </div>
+                <div class="relative w-full flex-grow bg-red text-white px-6 md:px-8 flex items-center">
+                    <h3 class="w-12 m-0 p-0 font-druk absolute pin-l ml-6 md:ml-8 my-auto">4</h3>
+                    <p class="ml-12 md:mx-24 text-base md:text-2xl">
+                        {{ page.meta(prefix ~ 'step_4') }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
 {# #}
 {% block footer %}
-{% include "partials/footer-ask-stehven.twig" with {
+    {% include "partials/footer-ask-stehven.twig" with {
 text: page.meta(prefix ~ 'footer_text'),
 mail: page.meta(prefix ~ 'footer_mail'),
 } %}

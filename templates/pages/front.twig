@@ -5,7 +5,7 @@
 {% block header %}
 
 <header id="section-header" class="section bg-purple pt-16 lg:pt-24 flex flex-col flex-wrap">
-    <div class="w-full h-1/3 lg:h-1/2 mx-6 md:mx-8 lg:mx-12 pt-8 pb-4 relative">
+    <div class="w-full h-1/3 lg:h-1/2 mx-6 md:mx-8 lg:mx-12 pt-8 pb-2 relative">
         <div class="w-full h-auto mt-8 mb-4 pin absolute">
             <div class="w-full h-full absolute">
                 <img class="h-full w-auto opacity-0" id="header-ask" src="{{ theme.link }}/assets/images/header-ask.svg"
@@ -20,7 +20,7 @@
                     alt="" />
             </div>
         </div>
-        <div class="w-1/2 ml-1/2 h-full px-12 absolute text-white hidden lg:flex flex-col justify-center">
+        <div class="w-1/2 ml-1/2 h-full pr-32 absolute text-white hidden lg:flex flex-col justify-center">
             <div class="">
                 <p class="text-4xl">
                     {{ page.meta(prefix ~ 'header_text') }}
@@ -28,8 +28,8 @@
             </div>
         </div>
     </div>
-    <div class="w-full h-1/4 lg:h-1/2 mx-6 md:mx-8 lg:mx-12 pt-4 pb-8 lg:pt-6 lg:pb-12 text-white relative">
-        <div class="w-full h-auto mt-8 mb-10 lg:mt-6 lg:mb-12 pin absolute">
+    <div class="w-full h-1/4 lg:h-1/2 mx-6 md:mx-8 lg:mx-12 pt-2 pb-8 lg:pt-6 lg:pb-12 text-white relative">
+        <div class="w-full h-auto mt-1 mb-10 lg:mt-6 lg:mb-12 pin absolute">
             <div class="w-full h-full absolute">
                 <img class="h-full w-max-full" src="{{ theme.link }}/assets/images/logo-stehven.svg" alt="" />
             </div>
@@ -42,7 +42,7 @@
             </p>
         </div>
     </div>
-        <div class="zenscroll absolute w-16 h-16 pin-b pin-r z-40 cursor-pointer" data-direction="down">
+        <div class="scrollify absolute w-16 h-16 pin-b pin-r z-40 cursor-pointer" data-direction="down">
         <img src="{{ theme.link }}/assets/images/double-arrow-down.svg" alt="">
     </div>
 </header>
@@ -53,61 +53,68 @@
 
 {% block content %}
 
-{% if event %}
-{% set slides = [] %}
-{% for item in event.meta('event_images') %}
-{% set slide = '<div class="w-full h-full" style="background-image: url(' ~ TimberImage(item.image).src('screen') ~ '); background-size: cover; background-position: center"></div>'
-%}
-{% set slides = slides|merge([ slide ]) %}
-{% endfor %}
+{% set options = {
+perPage: 1,
+loop: 1,
+controls: 1,
+draggable: 0
+} %}
+
+{% if page.meta('home_event_portfolio')|length > 0 %}
 <section class="section">
-  <div class="hidden lg:flex flex-wrap">
-    <div class="w-1/2">
-        {% include "partials/hero.twig" with {
-        background: 'green',
-        title: event.title,
-        subtitle: '<span class="font-medium">Organized by</span><br>' ~ event.meta('event_' ~ locale|getLang ~
-        '_organizer'),
-        paragraph: event.meta('event_' ~ locale|getLang ~ '_description')
-        } %}
+
+  <div class="siema-wrapper w-full relative" data-per-page="{{ options.perPage }}" data-loop="{{ options.loop }}"
+    data-draggable="{{ options.draggable }}" data-navigation-class="{{ options.navigationClass }}">
+    <div class="siema-slider">
+        
+        {% set ticker = 0 %}
+        {% for item in page.meta('home_event_portfolio') %}
+          {% set event = item.event %}
+          {% if ticker == 0 %}
+          {% set color = 'purple' %} {% set ticker = ticker + 1 %}
+          {% elseif ticker == 1 %}
+          {% set color = 'blue' %} {% set ticker = ticker + 1 %}
+          {% elseif ticker == 2 %}
+          {% set color = 'red' %} {% set ticker = ticker + 1 %}
+          {% elseif ticker == 3 %}
+          {% set color = 'green' %} {% set ticker = ticker + 1 %}
+          {% endif %}
+
+          {% if ticker == 4 %} {% set ticker = 0 %} {% endif %}
+
+          {% set number = '#1' %}
+          {% for post in event_posts %}
+            {% if post.title == event.title %}
+              {% set number = '#' ~ (loop.index + 1) %}
+            {% endif %}
+          {% endfor %}
+
+          <div class="siema-slide">
+            <div class="flex">
+              <div class="w-full lg:w-1/2 h-screen">
+              
+                {% include "partials/hero.twig" with {
+                  background: color,
+                  title: event.title,
+                  link: site.link ~ '/' ~ locale|getLang ~ '/' ~ locale|getLang ~ '-portfolio/' ~ number,
+                  subtitle: '<span class="font-medium">Organized by</span><br>' ~ event.meta('event_' ~ locale|getLang ~
+                  '_organizer'),
+                  paragraph: event.meta('event_' ~ locale|getLang ~ '_description')
+                } %}
+                
+              </div>
+              <div class="hidden lg:block w-1/2 h-screen" style="background-image: url({{ TimberImage( event.meta('event_images')[0].image ) }}); background-size: cover; background-position: center;">
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
     </div>
-    <div class="bg-white w-1/2">
-        {% include "components/siema-slider.twig" with {
-        options: {
-        perPage: 1,
-        loop: 1,
-        controls: 1,
-        draggable: 1
-        },
-        slides: slides,
-        } %}
-    </div>
+
+    {% include "components/siema-controls.twig" %}
+  
   </div>
 
-  {% set textSlide %}
-          {% include "partials/hero.twig" with {
-          background: 'green',
-          title: event.title,
-          subtitle: '<span class="font-medium">Organized by</span><br>' ~ event.meta('event_' ~ locale|getLang ~
-          '_organizer'),
-          paragraph: event.meta('event_' ~ locale|getLang ~ '_description')
-          } %}
-  {% endset %}
-  {% set slides = [ textSlide ]|merge(slides) %}
-
-  <div class="flex lg:hidden flex-wrap">
-    <div class="w-full">
-        {% include "components/siema-slider.twig" with {
-        options: {
-        perPage: 1,
-        loop: 1,
-        controls: 1,
-        draggable: 1
-        },
-        slides: slides,
-        } %}
-    </div>
-  </div>
 </section>
 {% endif %}
 
@@ -120,7 +127,7 @@
         color2: 'purple'
         } %}
     </div>
-    <div class="px-6 md:px-8 lg:px-12 py-12 bg-purple w-full lg:w-1/2 flex">
+    <div class="px-6 md:px-8 lg:px-12 py-12 bg-purple w-full h-full lg:w-1/2 flex">
         <div id="support-wrapper" class="h-full w-full overflow-hidden relative">
             <img class="h-full w-max-full" src="{{ theme.link }}/assets/images/get-support.svg" />
             <div id="here-wrapper" class="absolute pin-l pin-t">
@@ -164,6 +171,7 @@
 {% endif %}
 
 {% include "partials/hero.twig" with {
+    isComingUp: 1,
 background: background,
 title: 'COMING <span class="text-'~ accent ~'">UP</span><br>' ~ days ~ '<br><span class="text-'~accent~'">' ~ date ~ '</span>',
 subtitle: '<span class="font-medium">' ~ item.title ~ '</span><br><br>' ~ '<span class="font-medium">Organized by</span><br>'

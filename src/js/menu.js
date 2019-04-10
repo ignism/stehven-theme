@@ -28,8 +28,13 @@ import _ from 'lodash'
   }
 
   burgerMobile.onclick = (event) => {
-    menu.classList.toggle('active')
-    showMenu()
+    if (menu.classList.contains('active')) {
+      hideMenu()
+      menu.classList.remove('active')
+    } else {
+      menu.classList.add('active')
+      showMenu()
+    }
   }
 
   window.onmousemove = (event) => {
@@ -45,16 +50,32 @@ import _ from 'lodash'
     }
   }
 
-  let sections = document.getElementsByClassName('section')
+  let sections = Array.from(document.getElementsByClassName('section'))
+  let activeSection
 
-    if (sections[sections.length - 1].classList.contains('bg-white')) {
-      if (Math.abs(currOffset - sections[sections.length - 1].offsetTop) < 100) {
-        burger.classList.add('invert')
-        burger.classList.add('white')
-      } else {
-        burger.classList.remove('invert')
-      }
+  sections.forEach(section => {
+    if (section.classList.contains('active')) {
+      activeSection = section
     }
+  })
+  if (activeSection) {
+
+    if (activeSection.classList.contains('bg-white')) {
+      console.log('tick')
+    }
+  }
+
+  if (sections[sections.length - 1].classList.contains('bg-white')) {
+    if (Math.abs(currOffset - sections[sections.length - 1].offsetTop) < 100) {
+      burger.classList.add('invert')
+      burger.classList.add('white')
+      burgerMobile.classList.add('invert')
+      burgerMobile.classList.add('white')
+    } else {
+      burger.classList.remove('invert')
+      burgerMobile.classList.remove('invert')
+    }
+  }
 
 
   window.addEventListener('resize', _.debounce(() => {
@@ -63,7 +84,7 @@ import _ from 'lodash'
 
   window.addEventListener('scroll', (event) => {
     currOffset = window.scrollY
-    
+
     if (prevOffset < currOffset) {
       if (tickerDown === 0) {
         startOffset = currOffset
@@ -78,7 +99,7 @@ import _ from 'lodash'
       tickerUp++
       // console.log(tickerUp)
     }
-    
+
     if (tickerDown > 10) {
       // hideMenu()
       if (Math.abs(startOffset - currOffset) > threshold) {
@@ -91,20 +112,26 @@ import _ from 'lodash'
         // NAAAAAHHHH showMenu()
       }
     }
-    
+
     prevOffset = currOffset
 
-    let sections = document.getElementsByClassName('section')
 
-    if (sections[sections.length - 1].classList.contains('bg-white')) {
-      if (Math.abs(currOffset - sections[sections.length - 1].offsetTop) < 100) {
-        burger.classList.add('invert')
-      } else {
-        burger.classList.remove('invert')
+    let sections = Array.from(document.getElementsByClassName('section'))
+    let activeSection
+
+    sections.forEach(section => {
+      if (section.classList.contains('active')) {
+        activeSection = section
+        if (activeSection.classList.contains('bg-white')) {
+          console.log('tick')
+          burgerMobile.classList.add('invert')
+        } else {
+          burgerMobile.classList.remove('invert')
+        }
       }
-    }
+    })
   })
-  
+
 
   function hideMenu() {
     menu.style.top = '-' + menu.clientHeight + 'px'

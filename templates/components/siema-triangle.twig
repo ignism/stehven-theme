@@ -1,5 +1,15 @@
-<div class="siema-triangle w-full flex flex-col flex-wrap" data-direction="{{ direction }}">
+{#
+options: {
+perPage: 2,
+loop: 0,
+controls: 1,
+draggable: 0
+}
+#}
+
+<div class="siema-triangle w-full relative" data-direction="{{ direction }}">
     <div class="siema-slider">
+
         <div class="siema-slide bg-{{ color1 }}">
             {% if (direction == 'left') %}
             <div class="w-full h-1/2 text-{{ color2 }}">
@@ -17,6 +27,7 @@
             </div>
             {% endif %}
         </div>
+
         <div class="siema-slide bg-{{ color2 }}">
             {% if (direction == 'left') %}
             <div class="w-full h-1/2 text-{{ color1 }}">
@@ -34,5 +45,6 @@
             </div>
             {% endif %}
         </div>
+
     </div>
 </div>

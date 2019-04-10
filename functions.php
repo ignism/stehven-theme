@@ -203,4 +203,5 @@ function remove_menus()
 }
 add_action('admin_menu', 'remove_menus');
 
+
 add_image_size( 'screen', 2560, 1440 );

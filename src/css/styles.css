@@ -10,6 +10,7 @@
  * @import "tailwindcss/preflight";
  */
 /* @tailwind preflight; */
+
 @import "tailwindcss/preflight";
 
 /**
@@ -82,3 +83,21 @@ button:focus {
   border-left: 100% solid #14B978;
 } */
 
+@media (max-width: 767px) {
+
+  .text-base {
+    font-size: 0.8rem;
+  }
+  
+  .text-xl {
+    
+  }
+  
+  .text-2xl {
+
+  }
+
+  .text-3xl {
+
+  }
+}

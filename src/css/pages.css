@@ -1,4 +1,16 @@
+/* front */
+
+.hero a, 
+.hero a:visited 
+.hero a:active { 
+  color: white
+}
+
 /* ---- ASK */
+
+#mobile-just-ask {
+  transition: height 400ms ease-out;
+}
 
 .expander-content {
   height: 0;
@@ -9,7 +21,7 @@
 }
 
 .expander-wrapper.active .expander-content {
-  height: calc(66.667vh - 12rem);
+  height: calc(90vh - 20rem);
 }
 
 @media (min-width: 768px) {
@@ -30,11 +42,13 @@
 
 .expander-wrapper .cross {
   transform: rotateY(90deg);
+  transform-origin: 100%;
   transition: transform 400ms ease-out;
 }
 
 .expander-wrapper.active .plus {
   transform: rotateY(90deg);
+  transform-origin: 0%;
 }
 
 .expander-wrapper.active .cross {
@@ -96,12 +110,12 @@
 
 @media (min-width: 768px) {
   .portrait.big {
-    width: 50vw;
+    width: 50%;
     height: 50vw;
   }
   
   .portrait.small {
-    width: 50vw;
+    width: 50%;
     height: 50vw;
   }
 
@@ -122,12 +136,12 @@
 
 @media (min-width: 992px) {
   .portrait.big {
-    width: 50vw;
+    width: 50%;
     height: 50vw;
   }
   
   .portrait.small {
-    width: 25vw;
+    width: 25%;
     height: 25vw;
   }
 
@@ -146,6 +160,10 @@
     top: -25vw;
   }
   
+}
+
+.portrait.no-picture .portrait-overlay{
+  top: 0;
 }
 
 .portrait:hover .portrait-overlay{

@@ -53,7 +53,7 @@ import Siema from "siema"
         disableOptions()
         navigationItems[index].classList.add('active')
       
-      }, 2000)
+      }, 6000)
 
       for (let i = 0; i < navigationItems.length; i++) {
         let item = navigationItems[i]
@@ -87,7 +87,7 @@ import Siema from "siema"
             disableOptions()
             navigationItems[index].classList.add('active')
           
-          }, 2000)
+          }, 6000)
         })
       }
 
