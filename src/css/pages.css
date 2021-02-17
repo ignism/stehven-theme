@@ -1,9 +1,8 @@
 /* front */
 
-.hero a, 
-.hero a:visited 
-.hero a:active { 
-  color: white
+.hero a,
+.hero a:visited .hero a:active {
+  color: white;
 }
 
 /* ---- ASK */
@@ -52,29 +51,29 @@
 }
 
 .expander-wrapper.active .cross {
-  transform: rotateY(0);  
+  transform: rotateY(0);
 }
 
 .ask-option.active {
   color: white;
-  background: #9854FC;
+  background: #9854fc;
 }
 
 .step-option:nth-child(1),
 .step-option:nth-child(3) {
-  background: #46D5FF;
+  background: #46d5ff;
   color: white;
 }
 
 .step-option:nth-child(2),
 .step-option:nth-child(4) {
-  background: #FD4635;
+  background: #fd4635;
   color: white;
 }
 
 .step-option.active {
   background: white;
-  color: #FD4635;
+  color: #fd4635;
 }
 
 /* ---- MEET */
@@ -113,17 +112,16 @@
     width: 50%;
     height: 50vw;
   }
-  
+
   .portrait.small {
     width: 50%;
     height: 50vw;
   }
 
-  
   .portrait-row {
     height: 50vw;
   }
-  
+
   .small-portrait-row {
     height: 50vw;
   }
@@ -139,13 +137,11 @@
     width: 50%;
     height: 50vw;
   }
-  
+
   .portrait.small {
     width: 25%;
     height: 25vw;
   }
-
-  
   .portrait-row {
     height: 50vw;
   }
@@ -159,13 +155,26 @@
   .small-portrait-row .portrait-overlay {
     top: -25vw;
   }
-  
 }
 
-.portrait.no-picture .portrait-overlay{
+.portrait.no-picture .portrait-overlay {
   top: 0;
 }
 
-.portrait:hover .portrait-overlay{
+.portrait:hover .portrait-overlay {
   top: 0;
+}
+
+@media (min-width: 1600px) {
+  .portrait.big {
+    width: 25%;
+    height: 25vw;
+  }
+  .portrait-row {
+    height: 25vw;
+  }
+  .portrait-overlay {
+    top: -25vw;
+    transition: top 200ms ease-out;
+  }
 }
